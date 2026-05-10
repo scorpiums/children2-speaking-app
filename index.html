@@ -425,32 +425,37 @@
   <script>
 
     /* ==========================================
-       LÓGICA PARA AMPLIAR LA IMAGEN (MODAL)
+       LÓGICA PARA AMPLIAR LA IMAGEN (MODAL) - VERSIÓN MÓVIL
        ========================================== */
-    const sceneThumb = document.getElementById("sceneThumb");
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modalClose = document.getElementById("modalClose");
+      const sceneThumb = document.getElementById("sceneThumb");
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      const modalClose = document.getElementById("modalClose");
 
-    // Al pulsar en la miniatura de la izquierda, se abre el modal
-    if (sceneThumb) {
-      sceneThumb.onclick = () => {
+      // Función única para abrir el modal
+      function openImageModal(e) {
+      if (e) e.preventDefault(); // Evita comportamientos extraños del navegador
         modalBackdrop.style.display = "flex";
-      };
-    }
+      }
 
-    // Cerrar al pulsar en el botón "Cerrar" del modal
-    if (modalClose) {
-      modalClose.onclick = () => {
+      if (sceneThumb) {
+      // Escuchamos tanto el click (PC) como el toque (Móvil)
+        sceneThumb.addEventListener('click', openImageModal);
+        sceneThumb.addEventListener('touchstart', openImageModal, {passive: false});
+      }
+
+      // Cerrar al pulsar en la X (o botón Cerrar)
+      if (modalClose) {
+        modalClose.onclick = () => {
         modalBackdrop.style.display = "none";
-      };
-    }
+        };
+      }
 
-    // Cerrar si se pulsa fuera de la imagen (en el fondo oscuro)
-    window.addEventListener("click", (event) => {
+      // Cerrar si se pulsa fuera de la imagen
+        window.addEventListener("click", (event) => {
       if (event.target === modalBackdrop) {
         modalBackdrop.style.display = "none";
       }
-    });
+  });
 
     /* ============================
        PREGUNTAS (20 del documento + 10 nuevas)
