@@ -903,31 +903,47 @@
     /* ============================
        EVALUAR CON IA (versión local)
        ============================ */
-    btnEvaluate.onclick = () => {
-      const user = answerInput.value.trim().toLowerCase();
-      const valid = questions[current].answers.map(a => a.toLowerCase());
+btnEvaluate.onclick = async () => {
+  const user = answerInput.value.trim();
+  const q = questions[current];
 
-      if (!user) {
-        aiFeedback.textContent = "Escribe una respuesta primero.";
-        aiFeedback.className = "ai-feedback error";
-        aiFeedback.style.display = "block";
-        return;
-      }
+  if (!user) {
+    aiFeedback.textContent = "Escribe una respuesta primero.";
+    aiFeedback.className = "ai-feedback error";
+    aiFeedback.style.display = "block";
+    return;
+  }
 
-      // comprobación simple
-      const ok = valid.some(a => user.includes(a.split(" ")[0]));
+  aiFeedback.textContent = "Evaluando con IA...";
+  aiFeedback.className = "ai-feedback";
+  aiFeedback.style.display = "block";
 
-      if (ok) {
-        aiFeedback.textContent = "✔️ ¡Bien dicho! Tu respuesta es correcta o muy similar.";
-        aiFeedback.className = "ai-feedback ok";
-      } else {
-        aiFeedback.textContent = "❌ No es correcto. Mira las respuestas modelo para orientarte.";
-        aiFeedback.className = "ai-feedback error";
-      }
+  try {
+    const response = await fetch("https://github.pabgartov.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: q.question,
+        answers: q.answers,
+        user: user
+      })
+    });
 
-      aiFeedback.style.display = "block";
-    };
+    const data = await response.json();
+    const text = data.result;
 
+    aiFeedback.textContent = text;
+    aiFeedback.className = text.startsWith("✔️")
+      ? "ai-feedback ok"
+      : "ai-feedback error";
+
+  } catch (err) {
+    aiFeedback.textContent = "Error al conectar con la IA.";
+    aiFeedback.className = "ai-feedback error";
+  }
+
+  aiFeedback.style.display = "block";
+};
     /* ============================
        MICRÓFONO (Speech-to-text)
        ============================ */
