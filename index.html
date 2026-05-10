@@ -350,29 +350,27 @@
     <h1>Children 2 – Scene Card</h1>
     <p class="subtitle">Práctica de speaking con la escena de clase (Cambridge style).</p>
 
-    <div class="layout">
-      <div>
+<div class="layout">
+      <div class="column-left">
         <div class="scene-card">
           <div class="scene-title">Scene Card</div>
           <div class="scene-thumb-wrapper" id="sceneThumb" style="cursor: pointer; position: relative; border: 2px solid var(--primary); border-radius: 8px; overflow: hidden; margin-bottom: 15px;">
             <img src="scene-classroom.png" alt="Classroom scene" class="scene-thumb" style="display: block; width: 100%;">
-            <div style="position: absolute; bottom: 0; background: rgba(25, 118, 210, 0.8); color: white; width: 100%; text-align: center; padding: 4px 0; font-size: 0.85rem; font-weight: 500;">
+            <div style="position: absolute; bottom: 0; background: rgba(25, 118, 210, 0.8); color: white; width: 100%; text-align: center; padding: 4px 0; font-size: 0.85rem; font-weight: 500; pointer-events: none;">
               🔍 Click to zoom
             </div>
           </div>
-        </div> 
-      </div> 
-      <div class="instructions-and-game"> 
+        </div>
+      </div>
+
+      <div class="instructions-and-game">
         <div class="instructions">
           <strong>Cómo usar:</strong> Pulsa <strong>Escuchar</strong> para oír la pregunta.  
           Escribe tu respuesta o usa el <strong>micrófono</strong>.  
           Luego pulsa <strong>Evaluar con IA</strong> para una corrección básica, o <strong>Ver respuestas</strong> para ver ejemplos.
         </div>
-        </div> 
-    </div>
 
       <!-- Columna derecha: pregunta y controles -->
-      <div>
         <div class="question-header">
           <div class="question-number" id="questionNumber">Pregunta 1/30</div>
           <div class="grammar-tag" id="grammarTag">Present Continuous</div>
@@ -397,20 +395,15 @@
 
         <div class="answers-panel" id="answersPanel">
           <div class="answers-title">Posibles respuestas correctas</div>
-          <div class="answers-note">
-            Estas son respuestas modelo. Tu hijo puede decir otras similares que también sean correctas.
-          </div>
           <div id="answersList"></div>
         </div>
 
         <div class="nav-row">
           <button class="btn-secondary" id="btnPrev">⬅️ Anterior</button>
-          <div class="nav-info">Children 2 – Scene Card · Cambridge style</div>
+          <div class="nav-info">Children 2 · Cambridge style</div>
           <button class="btn-secondary" id="btnNext">Siguiente ➡️</button>
         </div>
-      </div>
-    </div>
-  </div>
+      </div> </div> </div>
 
   <!-- Modal imagen grande -->
   <div class="modal-backdrop" id="modalBackdrop">
@@ -424,39 +417,33 @@
 
   <script>
 
-    /* ==========================================
-       LÓGICA PARA AMPLIAR LA IMAGEN (MODAL) - VERSIÓN MÓVIL
-       ========================================== */
-      const sceneThumb = document.getElementById("sceneThumb");
-      const modalBackdrop = document.getElementById("modalBackdrop");
-      const modalClose = document.getElementById("modalClose");
+/* ==========================================
+   LÓGICA PARA AMPLIAR LA IMAGEN (MODAL)
+   ========================================== */
+const sceneThumb = document.getElementById("sceneThumb");
+const modalBackdrop = document.getElementById("modalBackdrop");
+const modalClose = document.getElementById("modalClose");
 
-      // Función única para abrir el modal
-      function openImageModal(e) {
-      if (e) e.preventDefault(); // Evita comportamientos extraños del navegador
-        modalBackdrop.style.display = "flex";
-      }
+if (sceneThumb) {
+  sceneThumb.style.cursor = "pointer"; // Refuerza que es clicable
+  sceneThumb.onclick = function() {
+    modalBackdrop.style.display = "flex";
+  };
+}
 
-      if (sceneThumb) {
-      // Escuchamos tanto el click (PC) como el toque (Móvil)
-        sceneThumb.addEventListener('click', openImageModal);
-        sceneThumb.addEventListener('touchstart', openImageModal, {passive: false});
-      }
+if (modalClose) {
+  modalClose.onclick = function() {
+    modalBackdrop.style.display = "none";
+  };
+}
 
-      // Cerrar al pulsar en la X (o botón Cerrar)
-      if (modalClose) {
-        modalClose.onclick = () => {
-        modalBackdrop.style.display = "none";
-        };
-      }
-
-      // Cerrar si se pulsa fuera de la imagen
-        window.addEventListener("click", (event) => {
-      if (event.target === modalBackdrop) {
-        modalBackdrop.style.display = "none";
-      }
-  });
-
+// Cerrar al hacer clic fuera de la imagen
+window.onclick = function(event) {
+  if (event.target === modalBackdrop) {
+    modalBackdrop.style.display = "none";
+  }
+};
+    
     /* ============================
        PREGUNTAS (20 del documento + 10 nuevas)
        ============================ */
