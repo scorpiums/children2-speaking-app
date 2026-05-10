@@ -341,19 +341,28 @@
     .scene-thumb-wrapper div {
       pointer-events: none; /* Esto hace que el texto no "bloquee" el click */
     }
+#btnInfo {
+  transition: transform 0.2s;
+  padding: 5px;
+  line-height: 1;
+}
 
+#btnInfo:hover {
+  transform: scale(1.2);
+}
+   
   </style>
 </head>
 
 <body>
   <div class="app-container">
     <h1>Children 2 – Scene Card</h1>
-    <p class="subtitle">Práctica de speaking con la escena de clase (Cambridge style).</p>
+    <p class="subtitle">Speaking 1</p>
 
 <div class="layout">
       <div class="column-left">
         <div class="scene-card">
-          <div class="scene-title">Scene Card</div>
+          <div class="scene-title"></div>
           <div class="scene-thumb-wrapper" id="sceneThumb" style="cursor: pointer; position: relative; border: 2px solid var(--primary); border-radius: 8px; overflow: hidden; margin-bottom: 15px;">
             <img src="scene-classroom.png" alt="Classroom scene" class="scene-thumb" style="display: block; width: 100%;">
             <div style="position: absolute; bottom: 0; background: rgba(25, 118, 210, 0.8); color: white; width: 100%; text-align: center; padding: 4px 0; font-size: 0.85rem; font-weight: 500; pointer-events: none;">
@@ -363,12 +372,22 @@
         </div>
       </div>
 
-      <div class="instructions-and-game">
-        <div class="instructions">
-          <strong>Cómo usar:</strong> Pulsa <strong>Escuchar</strong> para oír la pregunta.  
-          Escribe tu respuesta o usa el <strong>micrófono</strong>.  
-          Luego pulsa <strong>Evaluar con IA</strong> para una corrección básica, o <strong>Ver respuestas</strong> para ver ejemplos.
-        </div>
+<div class="instructions-and-game">
+  <button id="btnInfo" title="Click for help" style="background: none; border: none; cursor: pointer; font-size: 1.5rem; float: right; color: var(--primary);">
+    ℹ️
+  </button>
+
+  <div id="infoModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+    <div style="background-color: white; padding: 20px; border-radius: 10px; max-width: 80%; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+      <span id="closeInfo" style="position: absolute; top: 5px; right: 10px; cursor: pointer; font-size: 1.5rem; font-weight: bold;">&times;</span>
+      <h3 style="margin-top: 0; color: var(--primary);">Cómo usar</h3>
+      <p style="font-size: 0.95rem; line-height: 1.5;">
+        Pulsa <strong>Escuchar</strong> para oír la pregunta.<br><br>
+        Escribe tu respuesta o usa el <strong>micrófono</strong>.<br><br>
+        Luego pulsa <strong>Evaluar con IA</strong> para una corrección básica, o <strong>Ver respuestas</strong> para ver ejemplos.
+      </p>
+    </div>
+  </div>
 
       <!-- Columna derecha: pregunta y controles -->
         <div class="question-header">
@@ -449,6 +468,32 @@ window.onload = function() {
     }
   };
 };
+
+/* ==========================================
+   LÓGICA DEL MODAL DE INSTRUCCIONES
+   ========================================== */
+const btnInfo = document.getElementById("btnInfo");
+const infoModal = document.getElementById("infoModal");
+const closeInfo = document.getElementById("closeInfo");
+
+if (btnInfo && infoModal && closeInfo) {
+  // Abrir al pulsar el icono ℹ️
+  btnInfo.onclick = function() {
+    infoModal.style.display = "flex";
+  };
+
+  // Cerrar al pulsar la X
+  closeInfo.onclick = function() {
+    infoModal.style.display = "none";
+  };
+
+  // Cerrar si se pulsa fuera del cuadro blanco
+  window.addEventListener("click", function(event) {
+    if (event.target === infoModal) {
+      infoModal.style.display = "none";
+    }
+  });
+}
     
     /* ============================
        PREGUNTAS (20 del documento + 10 nuevas)
