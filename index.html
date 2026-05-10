@@ -420,28 +420,34 @@
 /* ==========================================
    LÓGICA PARA AMPLIAR LA IMAGEN (MODAL)
    ========================================== */
-const sceneThumb = document.getElementById("sceneThumb");
-const modalBackdrop = document.getElementById("modalBackdrop");
-const modalClose = document.getElementById("modalClose");
+// Usamos window.onload para asegurar que todos los elementos HTML existen antes de asignarles funciones
+window.onload = function() {
+  const sceneThumb = document.getElementById("sceneThumb");
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  const modalClose = document.getElementById("modalClose");
 
-if (sceneThumb) {
-  sceneThumb.style.cursor = "pointer"; // Refuerza que es clicable
+  // Verificamos que los elementos realmente existen en la página
+  if (!sceneThumb || !modalBackdrop || !modalClose) {
+    console.error("Error: No se encontraron los elementos del modal en el HTML.");
+    return;
+  }
+
+  // Función para abrir
   sceneThumb.onclick = function() {
     modalBackdrop.style.display = "flex";
   };
-}
 
-if (modalClose) {
+  // Función para cerrar con la X
   modalClose.onclick = function() {
     modalBackdrop.style.display = "none";
   };
-}
 
-// Cerrar al hacer clic fuera de la imagen
-window.onclick = function(event) {
-  if (event.target === modalBackdrop) {
-    modalBackdrop.style.display = "none";
-  }
+  // Función para cerrar haciendo click fuera de la imagen grande
+  window.onclick = function(event) {
+    if (event.target === modalBackdrop) {
+      modalBackdrop.style.display = "none";
+    }
+  };
 };
     
     /* ============================
