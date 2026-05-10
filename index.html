@@ -94,22 +94,6 @@
       border: 1px solid #ddd;
     }
 
-    .scene-thumb {
-      width: 100%;
-      display: block;
-    }
-
-    .zoom-label {
-      position: absolute;
-      bottom: 4px;
-      right: 4px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      font-size: 0.75rem;
-      padding: 3px 6px;
-      border-radius: 4px;
-    }
-
     .scene-help {
       margin-top: 8px;
       font-size: 0.8rem;
@@ -343,6 +327,21 @@
       padding: 4px 8px;
       font-size: 0.8rem;
     }
+
+    .scene-thumb-wrapper {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .scene-thumb-wrapper:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .scene-thumb-wrapper div {
+      pointer-events: none; /* Esto hace que el texto no "bloquee" el click */
+    }
+
   </style>
 </head>
 
@@ -424,6 +423,35 @@
   </div>
 
   <script>
+
+    /* ==========================================
+       LÓGICA PARA AMPLIAR LA IMAGEN (MODAL)
+       ========================================== */
+    const sceneThumb = document.getElementById("sceneThumb");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalClose = document.getElementById("modalClose");
+
+    // Al pulsar en la miniatura de la izquierda, se abre el modal
+    if (sceneThumb) {
+      sceneThumb.onclick = () => {
+        modalBackdrop.style.display = "flex";
+      };
+    }
+
+    // Cerrar al pulsar en el botón "Cerrar" del modal
+    if (modalClose) {
+      modalClose.onclick = () => {
+        modalBackdrop.style.display = "none";
+      };
+    }
+
+    // Cerrar si se pulsa fuera de la imagen (en el fondo oscuro)
+    window.addEventListener("click", (event) => {
+      if (event.target === modalBackdrop) {
+        modalBackdrop.style.display = "none";
+      }
+    });
+
     /* ============================
        PREGUNTAS (20 del documento + 10 nuevas)
        ============================ */
