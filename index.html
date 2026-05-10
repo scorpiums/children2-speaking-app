@@ -352,25 +352,23 @@
     <p class="subtitle">Práctica de speaking con la escena de clase (Cambridge style).</p>
 
     <div class="layout">
-      <!-- Columna izquierda: escena -->
       <div>
         <div class="scene-card">
           <div class="scene-title">Scene Card</div>
-          <div class="scene-thumb-wrapper" id="sceneThumb">
-            <img src="scene-classroom.png" alt="Classroom scene" class="scene-thumb" />
-            <div class="zoom-label">Pulsa para ampliar</div>
+          <div class="scene-thumb-wrapper" id="sceneThumb" style="cursor: pointer; position: relative; border: 2px solid var(--primary); border-radius: 8px; overflow: hidden; margin-bottom: 15px;">
+            <img src="scene-classroom.png" alt="Classroom scene" class="scene-thumb" style="display: block; width: 100%;">
+            <div style="position: absolute; bottom: 0; background: rgba(25, 118, 210, 0.8); color: white; width: 100%; text-align: center; padding: 4px 0; font-size: 0.85rem; font-weight: 500;">
+              🔍 Click to zoom
+            </div>
           </div>
-          <div class="scene-help">
-            Mira bien la imagen. Puedes ampliarla y hacer zoom para responder mejor.
-          </div>
-        </div>
-
+        </div> </div> <div class="instructions-and-game"> 
         <div class="instructions">
           <strong>Cómo usar:</strong> Pulsa <strong>Escuchar</strong> para oír la pregunta.  
           Escribe tu respuesta o usa el <strong>micrófono</strong>.  
           Luego pulsa <strong>Evaluar con IA</strong> para una corrección básica, o <strong>Ver respuestas</strong> para ver ejemplos.
         </div>
-      </div>
+        </div> 
+    </div>
 
       <!-- Columna derecha: pregunta y controles -->
       <div>
@@ -383,7 +381,6 @@
 
         <div class="btn-row">
           <button class="btn-primary" id="btnListen">🔊 Escuchar</button>
-          <button class="btn-secondary" id="btnShowImage">🖼️ Ver imagen grande</button>
         </div>
 
         <div class="answer-label">Escribe tu respuesta en inglés:</div>
