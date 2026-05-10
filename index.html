@@ -134,9 +134,27 @@
       color: #1565c0;
     }
 
-    .question-text {
-      font-size: 1rem;
-      margin-bottom: 8px;
+.question-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0; /* Ajustado para que quepa el botón al lado */
+      flex-grow: 1;
+      transition: all 0.3s ease;
+      filter: blur(5px); /* Difuminado por defecto */
+      opacity: 0.3;
+      user-select: none; /* Evita que se pueda copiar/pegar para leerlo */
+    }
+
+ .question-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px dashed #cbd5e1;
     }
 
     .btn-row {
@@ -384,18 +402,24 @@
       <p style="font-size: 0.95rem; line-height: 1.5;">
         Pulsa <strong>Escuchar</strong> para oír la pregunta.<br><br>
         Escribe tu respuesta o usa el <strong>micrófono</strong>.<br><br>
-        Luego pulsa <strong>Evaluar con IA</strong> para una corrección básica, o <strong>Ver respuestas</strong> para ver ejemplos.
+        Luego pulsa <strong>Evaluar con IA</strong> para una corrección con IA, o <strong>Ver respuestas</strong> para ver ejemplos.
       </p>
     </div>
   </div>
 
       <!-- Columna derecha: pregunta y controles -->
-        <div class="question-header">
-          <div class="question-number" id="questionNumber">Pregunta 1/30</div>
-          <div class="grammar-tag" id="grammarTag">Present Continuous</div>
-        </div>
+<div class="question-header">
+  <div class="question-number" id="questionNumber">Question 1/30</div>
+  <div class="grammar-tag" id="grammarTag">Present Continuous</div>
+</div>
 
-        <div class="question-text" id="questionText">What is the teacher doing?</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+  <div class="question-container">
+  <div class="question-text" id="questionText">What is the teacher doing?</div>
+  <button id="btnShowText" style="background: white; border: 1px solid var(--primary); border-radius: 6px; cursor: pointer; padding: 6px 10px; font-size: 0.75rem; color: var(--primary); white-space: nowrap;">
+    👁️ Show
+  </button>
+</div>
 
         <div class="btn-row">
           <button class="btn-primary" id="btnListen">🔊 Escuchar</button>
@@ -493,6 +517,26 @@ if (btnInfo && infoModal && closeInfo) {
       infoModal.style.display = "none";
     }
   });
+}
+
+/* ==========================================
+   LÓGICA PARA REVELAR PREGUNTA
+   ========================================== */
+const btnShowText = document.getElementById("btnShowText");
+const qText = document.getElementById("questionText");
+
+if (btnShowText && qText) {
+  btnShowText.onclick = function() {
+    if (qText.style.filter === "none") {
+      qText.style.filter = "blur(5px)";
+      qText.style.opacity = "0.3";
+      btnShowText.innerHTML = "👁️ Show";
+    } else {
+      qText.style.filter = "none";
+      qText.style.opacity = "1";
+      btnShowText.innerHTML = "🙈 Hide";
+    }
+  };
 }
     
     /* ============================
@@ -908,19 +952,31 @@ if (btnInfo && infoModal && closeInfo) {
     /* ============================
        NAVEGACIÓN
        ============================ */
-    btnNext.onclick = () => {
-      if (current < questions.length - 1) {
-        current++;
-        loadQuestion();
-      }
-    };
+// Para el botón SIGUIENTE
+btnNext.onclick = () => {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    renderQuestion(); 
+    
+    // ESTO ES LO NUEVO: Vuelve a poner el texto borroso
+    qText.style.filter = "blur(5px)";
+    qText.style.opacity = "0.3";
+    btnShowText.innerHTML = "👁️ Show";
+  }
+};
 
-    btnPrev.onclick = () => {
-      if (current > 0) {
-        current--;
-        loadQuestion();
-      }
-    };
+// Para el botón ANTERIOR
+btnPrev.onclick = () => {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion();
+    
+    // ESTO ES LO NUEVO: También al volver atrás
+    qText.style.filter = "blur(5px)";
+    qText.style.opacity = "0.3";
+    btnShowText.innerHTML = "👁️ Show";
+  }
+};
 
     /* ============================
        ESCUCHAR PREGUNTA (TTS)
