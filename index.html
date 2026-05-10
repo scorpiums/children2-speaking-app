@@ -361,7 +361,9 @@
               🔍 Click to zoom
             </div>
           </div>
-        </div> </div> <div class="instructions-and-game"> 
+        </div> 
+      </div> 
+      <div class="instructions-and-game"> 
         <div class="instructions">
           <strong>Cómo usar:</strong> Pulsa <strong>Escuchar</strong> para oír la pregunta.  
           Escribe tu respuesta o usa el <strong>micrófono</strong>.  
@@ -808,8 +810,6 @@
     const btnToggleAnswers = document.getElementById("btnToggleAnswers");
     const btnEvaluate = document.getElementById("btnEvaluate");
     const btnMic = document.getElementById("btnMic");
-    const btnShowImage = document.getElementById("btnShowImage");
-
     const modalBackdrop = document.getElementById("modalBackdrop");
     const modalClose = document.getElementById("modalClose");
 
@@ -975,8 +975,8 @@ btnEvaluate.onclick = async () => {
     /* ============================
        MODAL IMAGEN GRANDE
        ============================ */
-    btnShowImage.onclick = () => {
-      modalBackdrop.style.display = "flex";
+    sceneThumb.onclick = () => {
+    modalBackdrop.style.display = "flex";
     };
 
     modalClose.onclick = () => {
