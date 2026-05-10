@@ -930,15 +930,24 @@ btnEvaluate.onclick = async () => {
     });
 
     const data = await response.json();
-    const text = data.result;
+    
+    // Esto es vital para que puedas ver el error real en la consola (F12)
+    console.log("Respuesta completa del Worker:", data);
+
+    const text = data.result || "Error: No se recibió resultado de la IA.";
 
     aiFeedback.textContent = text;
-    aiFeedback.className = text.startsWith("✔️")
-      ? "ai-feedback ok"
-      : "ai-feedback error";
+    
+    // Ahora es más flexible: busca el símbolo o palabras clave de éxito
+    if (text.includes("✔️") || text.toLowerCase().includes("muy bien") || text.toLowerCase().includes("correcta")) {
+      aiFeedback.className = "ai-feedback ok";
+    } else {
+      aiFeedback.className = "ai-feedback error";
+    }
 
   } catch (err) {
-    aiFeedback.textContent = "Error al conectar con la IA.";
+    console.error("Error en la petición fetch:", err);
+    aiFeedback.textContent = "Error al conectar con la IA: " + err.message;
     aiFeedback.className = "ai-feedback error";
   }
 
