@@ -523,17 +523,17 @@ if (btnInfo && infoModal && closeInfo) {
    LÓGICA PARA REVELAR PREGUNTA
    ========================================== */
 const btnShowText = document.getElementById("btnShowText");
-const qText = document.getElementById("questionText");
+const questionText = document.getElementById("questionText");
 
-if (btnShowText && qText) {
+if (btnShowText && questionText) {
   btnShowText.onclick = function() {
-    if (qText.style.filter === "none") {
-      qText.style.filter = "blur(5px)";
-      qText.style.opacity = "0.3";
+    if (questionText.style.filter === "none") {
+      questionText.style.filter = "blur(5px)";
+      questionText.style.opacity = "0.3";
       btnShowText.innerHTML = "👁️ Show";
     } else {
-      qText.style.filter = "none";
-      qText.style.opacity = "1";
+      questionText.style.filter = "none";
+      questionText.style.opacity = "1";
       btnShowText.innerHTML = "🙈 Hide";
     }
   };
@@ -913,7 +913,8 @@ if (btnShowText && qText) {
 
     const questionNumber = document.getElementById("questionNumber");
     const grammarTag = document.getElementById("grammarTag");
-    const questionText = document.getElementById("questionText");
+    const questionText = document.getElementById("questionText"); // Le cambiamos el nombre a questionText
+    const btnShowText = document.getElementById("btnShowText"); // Añadimos el nuevo botón de el ojo
     const answersPanel = document.getElementById("answersPanel");
     const answersList = document.getElementById("answersList");
     const aiFeedback = document.getElementById("aiFeedback");
@@ -959,8 +960,8 @@ btnNext.onclick = () => {
     renderQuestion(); 
     
     // ESTO ES LO NUEVO: Vuelve a poner el texto borroso
-    qText.style.filter = "blur(5px)";
-    qText.style.opacity = "0.3";
+    questionText.style.filter = "blur(5px)";
+    questionText.style.opacity = "0.3";
     btnShowText.innerHTML = "👁️ Show";
   }
 };
@@ -972,8 +973,8 @@ btnPrev.onclick = () => {
     renderQuestion();
     
     // ESTO ES LO NUEVO: También al volver atrás
-    qText.style.filter = "blur(5px)";
-    qText.style.opacity = "0.3";
+    questionText.style.filter = "blur(5px)";
+    questionText.style.opacity = "0.3";
     btnShowText.innerHTML = "👁️ Show";
   }
 };
