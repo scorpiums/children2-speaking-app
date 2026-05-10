@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -622,5 +622,359 @@
           "Closed, next to the racket."
         ]
       },
-      {
+           {
         id: 17,
+        question: "What is on the teacher’s desk?",
+        grammar: "Vocabulary",
+        answers: [
+          "A vase.",
+          "A blue vase with flowers.",
+          "A handbag.",
+          "A tennis racket.",
+          "Flowers and a bag."
+        ]
+      },
+      {
+        id: 18,
+        question: "What is the girl writing?",
+        grammar: "Present Continuous",
+        answers: [
+          "A notebook.",
+          "She is writing in her notebook.",
+          "She is writing something.",
+          "She is writing a text.",
+          "She is doing schoolwork."
+        ]
+      },
+      {
+        id: 19,
+        question: "What color is the teacher’s dress?",
+        grammar: "Colours / Clothes",
+        answers: [
+          "Green.",
+          "It is green.",
+          "She is wearing a green dress.",
+          "Her dress is green.",
+          "A green dress."
+        ]
+      },
+      {
+        id: 20,
+        question: "Where are the books?",
+        grammar: "Prepositions of place",
+        answers: [
+          "On the shelf.",
+          "On the bookshelf.",
+          "Behind the children.",
+          "On the shelves.",
+          "On the bookcase."
+        ]
+      },
+      {
+        id: 21,
+        question: "What is the boy looking at?",
+        grammar: "Present Continuous",
+        answers: [
+          "A book.",
+          "He is looking at a book.",
+          "He is reading.",
+          "He is looking at his notebook.",
+          "He is reading a story."
+        ]
+      },
+      {
+        id: 22,
+        question: "Is the girl happy or sad?",
+        grammar: "Adjectives",
+        answers: [
+          "Happy.",
+          "She looks happy.",
+          "She is happy.",
+          "She is smiling.",
+          "Happy girl."
+        ]
+      },
+      {
+        id: 23,
+        question: "What is the teacher writing?",
+        grammar: "Present Continuous",
+        answers: [
+          "Letters.",
+          "She is writing letters.",
+          "She is writing the alphabet.",
+          "She is writing A, B, C...",
+          "She is writing on the board."
+        ]
+      },
+      {
+        id: 24,
+        question: "What color is the boy’s hair?",
+        grammar: "Physical description",
+        answers: [
+          "Brown.",
+          "He has brown hair.",
+          "His hair is brown.",
+          "Brown hair.",
+          "Light brown hair."
+        ]
+      },
+      {
+        id: 25,
+        question: "Where is the door?",
+        grammar: "Prepositions of place",
+        answers: [
+          "Behind the teacher.",
+          "On the right.",
+          "Next to the bookshelf.",
+          "Behind the children.",
+          "On the right side."
+        ]
+      },
+      {
+        id: 26,
+        question: "What is the girl wearing?",
+        grammar: "Clothes",
+        answers: [
+          "A pink dress.",
+          "She is wearing a pink dress.",
+          "A pink dress and black shoes.",
+          "A dress.",
+          "Pink clothes."
+        ]
+      },
+      {
+        id: 27,
+        question: "Is the teacher standing or sitting?",
+        grammar: "Present Continuous",
+        answers: [
+          "Standing.",
+          "She is standing.",
+          "The teacher is standing.",
+          "Standing next to the board.",
+          "She is standing and writing."
+        ]
+      },
+      {
+        id: 28,
+        question: "What can you see on the floor?",
+        grammar: "Vocabulary",
+        answers: [
+          "A rug.",
+          "A pink and blue rug.",
+          "A colorful rug.",
+          "A rug on the floor.",
+          "A carpet."
+        ]
+      },
+      {
+        id: 29,
+        question: "What is the teacher holding?",
+        grammar: "Present Continuous",
+        answers: [
+          "A piece of chalk.",
+          "She is holding chalk.",
+          "Chalk.",
+          "She is holding something white.",
+          "A chalk stick."
+        ]
+      },
+      {
+        id: 30,
+        question: "What are the children doing?",
+        grammar: "Present Continuous",
+        answers: [
+          "Reading and writing.",
+          "They are reading and writing.",
+          "They are studying.",
+          "They are doing schoolwork.",
+          "They are working at their desks."
+        ]
+      }
+    ];
+    /* ============================
+       LÓGICA DE LA APLICACIÓN
+       ============================ */
+
+    let current = 0;
+
+    const questionNumber = document.getElementById("questionNumber");
+    const grammarTag = document.getElementById("grammarTag");
+    const questionText = document.getElementById("questionText");
+    const answersPanel = document.getElementById("answersPanel");
+    const answersList = document.getElementById("answersList");
+    const aiFeedback = document.getElementById("aiFeedback");
+    const answerInput = document.getElementById("answerInput");
+
+    const btnPrev = document.getElementById("btnPrev");
+    const btnNext = document.getElementById("btnNext");
+    const btnListen = document.getElementById("btnListen");
+    const btnToggleAnswers = document.getElementById("btnToggleAnswers");
+    const btnEvaluate = document.getElementById("btnEvaluate");
+    const btnMic = document.getElementById("btnMic");
+    const btnShowImage = document.getElementById("btnShowImage");
+
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalClose = document.getElementById("modalClose");
+
+    /* ============================
+       MOSTRAR PREGUNTA
+       ============================ */
+    function loadQuestion() {
+      const q = questions[current];
+
+      questionNumber.textContent = `Pregunta ${current + 1}/${questions.length}`;
+      grammarTag.textContent = q.grammar;
+      questionText.textContent = q.question;
+
+      // limpiar respuesta y feedback
+      answerInput.value = "";
+      aiFeedback.style.display = "none";
+
+      // cerrar panel de respuestas
+      answersPanel.style.display = "none";
+      answersList.innerHTML = "";
+    }
+
+    loadQuestion();
+
+    /* ============================
+       NAVEGACIÓN
+       ============================ */
+    btnNext.onclick = () => {
+      if (current < questions.length - 1) {
+        current++;
+        loadQuestion();
+      }
+    };
+
+    btnPrev.onclick = () => {
+      if (current > 0) {
+        current--;
+        loadQuestion();
+      }
+    };
+
+    /* ============================
+       ESCUCHAR PREGUNTA (TTS)
+       ============================ */
+    btnListen.onclick = () => {
+      const q = questions[current].question;
+      const utter = new SpeechSynthesisUtterance(q);
+      utter.lang = "en-US";
+      speechSynthesis.speak(utter);
+    };
+
+    /* ============================
+       MOSTRAR RESPUESTAS
+       ============================ */
+    btnToggleAnswers.onclick = () => {
+      if (answersPanel.style.display === "none") {
+        const q = questions[current];
+        answersList.innerHTML = "";
+
+        q.answers.forEach(a => {
+          const div = document.createElement("div");
+          div.className = "answer-item";
+
+          const text = document.createElement("div");
+          text.className = "answer-text";
+          text.textContent = a;
+
+          const audioBtn = document.createElement("button");
+          audioBtn.className = "btn-secondary";
+          audioBtn.textContent = "🔊";
+          audioBtn.onclick = () => {
+            const u = new SpeechSynthesisUtterance(a);
+            u.lang = "en-US";
+            speechSynthesis.speak(u);
+          };
+
+          div.appendChild(text);
+          div.appendChild(audioBtn);
+          answersList.appendChild(div);
+        });
+
+        answersPanel.style.display = "block";
+      } else {
+        answersPanel.style.display = "none";
+      }
+    };
+
+    /* ============================
+       EVALUAR CON IA (versión local)
+       ============================ */
+    btnEvaluate.onclick = () => {
+      const user = answerInput.value.trim().toLowerCase();
+      const valid = questions[current].answers.map(a => a.toLowerCase());
+
+      if (!user) {
+        aiFeedback.textContent = "Escribe una respuesta primero.";
+        aiFeedback.className = "ai-feedback error";
+        aiFeedback.style.display = "block";
+        return;
+      }
+
+      // comprobación simple
+      const ok = valid.some(a => user.includes(a.split(" ")[0]));
+
+      if (ok) {
+        aiFeedback.textContent = "✔️ ¡Bien dicho! Tu respuesta es correcta o muy similar.";
+        aiFeedback.className = "ai-feedback ok";
+      } else {
+        aiFeedback.textContent = "❌ No es correcto. Mira las respuestas modelo para orientarte.";
+        aiFeedback.className = "ai-feedback error";
+      }
+
+      aiFeedback.style.display = "block";
+    };
+
+    /* ============================
+       MICRÓFONO (Speech-to-text)
+       ============================ */
+    btnMic.onclick = () => {
+      if (!("webkitSpeechRecognition" in window)) {
+        alert("Tu navegador no soporta reconocimiento de voz.");
+        return;
+      }
+
+      const rec = new webkitSpeechRecognition();
+      rec.lang = "en-US";
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+
+      rec.onresult = (event) => {
+        const text = event.results[0][0].transcript;
+        answerInput.value = text;
+      };
+
+      rec.start();
+    };
+
+    /* ============================
+       MODAL IMAGEN GRANDE
+       ============================ */
+    btnShowImage.onclick = () => {
+      modalBackdrop.style.display = "flex";
+    };
+
+    modalClose.onclick = () => {
+      modalBackdrop.style.display = "none";
+    };
+
+    modalBackdrop.onclick = (e) => {
+      if (e.target === modalBackdrop) {
+        modalBackdrop.style.display = "none";
+      }
+    };
+    /* ============================
+       SERVICE WORKER (PWA)
+       ============================ */
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .catch(err => console.log("SW error:", err));
+    }
+
+  </script>
+
+</body>
+</html>
