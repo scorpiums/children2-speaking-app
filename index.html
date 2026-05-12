@@ -71,7 +71,6 @@
     .header-text h1 { margin: 0; font-size: 1.1rem; font-weight: 700; }
     .header-text p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
 
-    /* CUADRO DE INSTRUCCIONES RESTAURADO */
     .instruction-box {
       background: #e8f5e9;
       margin: 15px; padding: 15px;
@@ -112,7 +111,10 @@
     }
 
     .input-section { padding: 0 15px; }
+    
+    /* Input Wrapper ajustado para Micrófono a la izquierda */
     .input-wrapper { display: flex; gap: 10px; align-items: stretch; margin-bottom: 12px; }
+    
     textarea {
       flex-grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
       padding: 12px; font-size: 1rem; min-height: 60px; outline: none;
@@ -197,8 +199,8 @@
 
     <div class="input-section">
       <div class="input-wrapper">
+        <button class="btn-pill btn-yellow" id="btnMic" style="padding: 15px;">🎤</button>
         <textarea id="answerInput" placeholder="Escribe aquí tu respuesta en inglés..."></textarea>
-        <button class="btn-pill btn-purple" id="btnMic">🎤</button>
       </div>
 
       <div class="action-row">
@@ -230,7 +232,6 @@
     const questions = [
       { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "She's writing."] },
       { id: 2, question: "Where is the cat?", answers: ["It is under the table.", "Under the table."] }
-      // ... añadir el resto
     ];
 
     let current = 0;
@@ -262,13 +263,10 @@
       popup.style.display = "none";
     }
 
-    // IA con Cloudflare Worker
     document.getElementById("btnEvaluate").onclick = async () => {
       const userText = answerInput.value.trim();
       if (!userText) return;
-
       showPopup("Analizando...", "Estamos revisando tu respuesta con la IA...");
-
       try {
         const response = await fetch("https://github.pabgartov.workers.dev/", {
           method: "POST",
