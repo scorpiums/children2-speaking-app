@@ -1,340 +1,506 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Children 2 – Scene Card Speaking Practice</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+	
+	
+		
+	
+	
+		Activar hasta 9,10% cashback
+	
+ charset="UTF-8" />
+  <title>Cambridge Speaking Practice – Children 2</title>
+  <meta
+	
+	
+		
+	
+	
+		Activar hasta 9,10% cashback
+	
+ name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
+  <meta
+	
+	
+		
+	
+	
+		Activar hasta 9,10% cashback
+	
+ name="theme-color" content="#9c27b0">
 
   <style>
     :root {
-      --primary: #1976d2;
-      --primary-dark: #0d47a1;
-      --accent: #ffca28;
-      --bg: #f5f5f5;
-      --card-bg: #ffffff;
-      --border-radius: 10px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.12);
-      --text-main: #333;
-      --text-muted: #666;
+      --header-grad: linear-gradient(135deg, #64b5f6 0%, #ce93d8 100%);
+      --bg-light: #f1f7f9;
+      --yellow-tag: #ffd54f;
+      --purple-btn: #9c27b0;
+      --blue-btn: #42a5f5;
+      --green-btn: #4caf50;
+      --text-dark: #2c3e50;
+      --card-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
 
-    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
 
     body {
       margin: 0; padding: 0;
-      background: var(--bg);
-      color: var(--text-main);
-      display: flex; justify-content: center;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; justify-content: center;
       min-height: 100vh;
     }
 
     .app-container {
-      max-width: 960px; width: 100%;
-      margin: 20px; background: var(--card-bg);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
+      max-width: 500px; width: 100%;
+      background: white;
+      min-height: 100vh;
+      display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+-direction: column;
+      position: relative;
     }
 
-    h1 { margin: 0 0 4px; font-size: 1.4rem; color: var(--primary-dark); }
-    .subtitle { margin: 0 0 16px; font-size: 0.9rem; color: var(--text-muted); }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 24px;
+    /* Header Estilo Screenshot */
+    .app-header {
+      background: var(--header-grad);
+      padding: 20px;
+      color: white;
+      display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; align-items: center; gap: 15px;
     }
 
-    @media (max-width: 768px) { .layout { grid-template-columns: 1fr; } }
+    .star-icon { font-size: 2rem; }
+    .header-text h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
+    .header-text p { margin: 0; font-size: 0.85rem; opacity: 0.9; }
 
-    .scene-card {
-      border-radius: var(--border-radius);
-      background: #fafafa; padding: 12px;
-      border: 1px solid #e0e0e0;
+    /* Scene Card (Caja Oscura) */
+    .scene-section {
+      background: #263238;
+      margin: 15px; border-radius: 15px;
+      padding: 12px; display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; align-items: center; gap: 15px;
+      color: white; cursor: pointer;
+    }
+    .scene-thumb {
+      width: 70px; height: 70px; border-radius: 10px;
+      object-fit: cover; border: 2px solid #546e7a;
+    }
+    .scene-info { flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+-grow: 1; }
+    .scene-info b { color: var(--yellow-tag); display: block; font-size: 0.9rem; }
+    .scene-info p { margin: 4px 0 0; font-size: 0.75rem; color: #b0bec5; }
+
+    /* Instrucciones (Caja Verde) */
+    .instruction-box {
+      background: #e8f5e9;
+      margin: 0 15px 15px; padding: 15px;
+      border-radius: 15px; border-left: 5px solid #81c784;
+      font-size: 0.85rem; line-height: 1.4;
     }
 
-    .scene-thumb-wrapper {
-      position: relative; cursor: pointer;
-      border-radius: 8px; overflow: hidden;
-      border: 2px solid var(--primary);
-      transition: transform 0.2s, box-shadow 0.2s;
+    /* Tags de Progreso */
+    .status-row {
+      display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; justify-content: space-between;
+      padding: 0 15px; margin-bottom: 10px;
+    }
+    .tag-yellow {
+      background: var(--yellow-tag);
+      padding: 6px 15px; border-radius: 20px;
+      font-weight: 700; font-size: 0.85rem;
+    }
+    .btn-actions {
+      background: #b39ddb; color: white;
+      padding: 6px 15px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 700; border: none;
     }
 
-    .scene-thumb-wrapper:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Card de la Pregunta */
+    .question-card {
+      background: white;
+      margin: 0 15px 20px; padding: 30px 20px;
+      border-radius: 20px;
+      border: 2px solid #e3f2fd;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    .question-container {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 20px; background: #f8fafc;
-      padding: 12px; border-radius: 10px;
-      border: 1px dashed #cbd5e1;
+    .question-card::after {
+      content: attr(data-number);
+      position: absolute; right: 10px; bottom: -10px;
+      font-size: 5rem; font-weight: 900; color: #f1f8fe;
+      z-index: 0;
     }
-
     .question-text {
-      font-size: 1.2rem; font-weight: 600;
-      color: var(--primary); flex-grow: 1;
-      transition: all 0.3s ease;
-      filter: blur(5px); opacity: 0.3;
-      user-select: none;
+      font-size: 1.3rem; font-weight: 700;
+      color: #37474f; position: relative; z-index: 1;
+      filter: blur(6px); opacity: 0.3; transition: all 0.3s;
     }
 
-    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-
-    button {
-      border-radius: 999px; border: none;
-      padding: 8px 16px; font-size: 0.9rem;
-      cursor: pointer; display: inline-flex;
-      align-items: center; gap: 6px;
+    /* Botones Estilo Píldora */
+    .btn-pill {
+      border-radius: 30px; border: none;
+      padding: 12px 25px; font-weight: 700;
+      display: inline-flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; align-items: center; gap: 8px;
+      cursor: pointer; transition: transform 0.1s;
+      color: white; font-size: 0.9rem;
     }
+    .btn-pill:active { transform: scale(0.95); }
+    
+    .btn-blue { background: var(--blue-btn); box-shadow: 0 4px 10px rgba(66, 165, 245, 0.3); }
+    .btn-purple { background: var(--purple-btn); box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3); }
+    .btn-yellow { background: var(--yellow-tag); color: #5f4b00; }
+    .btn-green { background: var(--green-btn); }
+    .btn-grey { background: #eceff1; color: #546e7a; }
 
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-secondary { background: #eeeeee; color: #333; }
-    .btn-accent { background: var(--accent); color: #333; }
-    .btn-outline { background: transparent; border: 1px solid #ccc; }
-
+    /* Input Area */
+    .input-section { padding: 0 15px; margin-top: 15px; }
+    .input-label { font-size: 0.85rem; font-weight: 700; color: #546e7a; margin-bottom: 8px; display: block; }
+    .input-wrapper { display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; gap: 10px; align-items: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+-start; }
+    
     textarea {
-      width: 100%; min-height: 80px;
-      border-radius: 8px; border: 1px solid #ccc;
-      padding: 10px; font-size: 1rem; margin-bottom: 10px;
+      flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+-grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
+      padding: 12px; font-size: 1rem; min-height: 50px; outline: none;
+    }
+    textarea:focus { border-color: var(--blue-btn); }
+
+    /* Footer / Navegación */
+    .nav-footer {
+      margin-top: auto; padding: 20px 15px;
+      display: flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; justify-content: space-between;
     }
 
-    .ai-feedback { margin-top: 10px; padding: 10px; border-radius: 8px; display: none; }
-    .ai-feedback.ok { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-    .ai-feedback.error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+    /* Feedback & Panel Respuestas */
+    .ai-feedback { margin: 10px 15px; padding: 12px; border-radius: 12px; display: none; font-size: 0.9rem; }
+    .ai-feedback.ok { background: #e8f5e9; color: #2e7d32; }
+    .ai-feedback.error { background: #ffebee; color: #c62828; }
 
-    .answers-panel { margin-top: 10px; background: #fff8e1; padding: 12px; border-radius: 8px; display: none; }
-
-    .nav-row { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-      display: none; justify-content: center; align-items: center; z-index: 2000;
+    .answers-panel {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: white; border-radius: 25px 25px 0 0;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+      padding: 20px; display: none; z-index: 100;
     }
-    .modal-content { max-width: 90vw; position: relative; }
-    .modal-img { width: 100%; border-radius: 8px; }
-    .modal-close { position: absolute; top: -40px; right: 0; color: white; background: none; font-size: 1.2rem; }
 
-    #btnInfo { font-size: 1.5rem; float: right; transition: transform 0.2s; }
-    #btnInfo:hover { transform: scale(1.2); }
+    /* Modales */
+    .modal-full {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+      display: none; justify-content: center; align-items: center; z-index: 1000;
+    }
+    .modal-img { max-width: 95%; border-radius: 10px; }
   </style>
 </head>
 
 <body>
   <div class="app-container">
-    <button id="btnInfo" title="Help" style="background:none; border:none; cursor:pointer; color:var(--primary);">ℹ️</button>
-    <h1>Children 2 – Scene Card</h1>
-    <p class="subtitle">Speaking Practice</p>
-
-    <div class="layout">
-      <div class="column-left">
-        <div class="scene-card">
-          <div class="scene-thumb-wrapper" id="sceneThumb">
-            <img src="scene-classroom.png" alt="Scene" style="display: block; width: 100%;">
-            <div style="position: absolute; bottom: 0; background: rgba(25,118,210,0.8); color: white; width: 100%; text-align: center; padding: 4px 0; font-size: 0.8rem; pointer-events: none;">
-              🔍 Click to zoom
-            </div>
-          </div>
-        </div>
+    
+    <header class="app-header">
+      <div class="star-icon">⭐</div>
+      <div class="header-text">
+        <h1>Cambridge Speaking Practice</h1>
+        <p>Children 2 – Scene Card</p>
       </div>
+      <button id="btnInfo" style="margin-left:auto; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">ℹ️</button>
+    </header>
 
-      <div class="instructions-and-game">
-        <div class="question-header">
-          <div class="question-number" id="questionNumber">Question 1/30</div>
-          <div class="grammar-tag" id="grammarTag">Present Continuous</div>
-        </div>
-
-        <div class="question-container">
-          <div class="question-text" id="questionText">Question content</div>
-          <button id="btnShowText" style="background:white; border:1px solid var(--primary); border-radius:6px; color:var(--primary); cursor:pointer; font-size:0.7rem; white-space:nowrap;">👁️ Show</button>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn-primary" id="btnListen">🔊 Escuchar</button>
-        </div>
-
-        <textarea id="answerInput" placeholder="Write your answer here..."></textarea>
-
-        <div class="btn-row">
-          <button class="btn-secondary" id="btnMic">🎤 Voz</button>
-          <button class="btn-accent" id="btnEvaluate">🤖 Evaluar</button>
-          <button class="btn-outline" id="btnToggleAnswers">📖 Respuestas</button>
-        </div>
-
-        <div class="ai-feedback" id="aiFeedback"></div>
-
-        <div class="answers-panel" id="answersPanel">
-          <div style="font-weight:600; margin-bottom:5px;">Model Answers:</div>
-          <div id="answersList"></div>
-        </div>
-
-        <div class="nav-row">
-          <button class="btn-secondary" id="btnPrev">⬅️ Anterior</button>
-          <div class="nav-info">Cambridge Style</div>
-          <button class="btn-secondary" id="btnNext">Siguiente ➡️</button>
-        </div>
+    <div class="scene-section" id="sceneThumb">
+      <img src="scene-classroom.png" class="scene-thumb" alt="Classroom">
+      <div class="scene-info">
+        <b>🖼️ Scene Card</b>
+        <p>Tap to zoom in and explore the classroom</p>
       </div>
+      <div style="font-size: 1.2rem; opacity: 0.5;">🔍</div>
     </div>
+
+    <div class="instruction-box">
+      💡 <b>Cómo usar:</b> Pulsa 🔊 <i>Escuchar</i> para oír la pregunta. Escribe tu respuesta y pulsa 🤖 <i>Evaluar</i> para que la IA la corrija, o ⭐ <i>Ver respuestas</i> para la guía completa.
+    </div>
+
+    <div class="status-row">
+      <div class="tag-yellow" id="questionNumber">Pregunta 1 / 30</div>
+      <button class="btn-actions" id="btnShowText">SHOW</button>
+    </div>
+
+    <div class="question-card" id="qCard" data-number="01">
+      <div class="question-text" id="questionText">What is the teacher doing?</div>
+    </div>
+
+    <div style="padding: 0 15px;">
+      <button class="btn-pill btn-blue" id="btnListen">🔊 Escuchar</button>
+    </div>
+
+    <div class="input-section">
+      <label class="input-label">✏️ Escribe tu respuesta en inglés:</label>
+      <div class="input-wrapper">
+        <textarea id="answerInput" placeholder="Type here..."></textarea>
+        <button class="btn-pill btn-purple" id="btnEvaluate" style="padding: 12px;"><span style="font-size:1.2rem">🤖</span> Evaluar</button>
+      </div>
+      <button class="btn-pill btn-yellow" id="btnToggleAnswers" style="margin-top:10px; width:100%; justify-content:center;">⭐ Ver respuestas</button>
+    </div>
+
+    <div class="ai-feedback" id="aiFeedback"></div>
+
+    <footer class="nav-footer">
+      <button class="btn-pill btn-grey" id="btnPrev">← Anterior</button>
+      <button class="btn-pill btn-green" id="btnNext">Siguiente →</button>
+    </footer>
+
+    <div class="answers-panel" id="answersPanel">
+      <div style="display:flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+; justify-content:space-between; margin-bottom:15px;">
+        <b>Model Answers</b>
+        <button onclick="document.getElementById('answersPanel').style.display='none'" style="border:none; background:none; font-weight:bold; color:var(--purple-btn)">CERRAR</button>
+      </div>
+      <div id="answersList"></div>
+    </div>
+
   </div>
 
-  <div id="infoModal" class="modal-backdrop">
-    <div style="background:white; padding:24px; border-radius:12px; max-width:400px; position:relative;">
-      <button id="closeInfo" style="position:absolute; top:10px; right:10px; background:none; font-size:1.5rem;">&times;</button>
-      <h3>How to use</h3>
-      <p>1. Listen to the question.<br>2. Answer using the microphone or typing.<br>3. Use AI to check your answer.</p>
-    </div>
+  <div id="modalBackdrop" class="modal-full">
+    <img src="scene-classroom.png" class="modal-img">
   </div>
 
-  <div id="modalBackdrop" class="modal-backdrop">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">✕ Close</button>
-      <img src="scene-classroom.png" class="modal-img">
+  <div id="infoModal" class="modal-full">
+    <div style="background:white; padding:25px; border-radius:20px; max-width:85%; position:relative;">
+      <h3 style="color:var(--purple-btn); margin-top:0">Instrucciones</h3>
+      <p>Este entrenamiento ayuda a mejorar el "Speaking" del examen de Cambridge.</p>
+      <p><b>Tips:</b> No hace falta ver el texto, intenta entenderlo solo de oído. Si te atascas, dale a SHOW.</p>
+      <button onclick="document.getElementById('infoModal').style.display='none'" class="btn-pill btn-purple" style="width:100%; justify-content:center;">Entendido</button>
     </div>
   </div>
 
   <script>
     const questions = [
-      { id: 1, question: "What is the teacher doing?", grammar: "Present Continuous", answers: ["She is writing on the board.", "Writing."] },
-      { id: 2, question: "How many flowers are in the vase?", grammar: "Numbers", answers: ["There are four flowers.", "Four."] },
-      { id: 3, question: "Where is the black handbag?", grammar: "Prepositions", answers: ["It is on the desk.", "On the table."] },
-      { id: 4, question: "What color is the boy’s shirt?", grammar: "Colours", answers: ["It's green.", "He is wearing a green shirt."] },
-      { id: 5, question: "What is the girl doing?", grammar: "Present Continuous", answers: ["She is writing.", "She's sitting and writing."] },
-      { id: 6, question: "Where is the red backpack?", grammar: "Prepositions", answers: ["On the floor.", "Next to the girl."] },
-      { id: 7, question: "What color is the teacher's hair?", grammar: "Physical description", answers: ["Orange.", "Her hair is orange."] },
-      { id: 8, question: "Where is the tennis racket?", grammar: "Prepositions", answers: ["Next to the door.", "On the floor."] },
-      { id: 9, question: "What letters can you see on the board?", grammar: "Alphabet", answers: ["A, B, C, D.", "The alphabet."] },
-      { id: 10, question: "Is the teacher wearing glasses?", grammar: "Yes/No", answers: ["Yes, she is.", "Yes."] },
-      { id: 11, question: "How many children are there?", grammar: "Numbers", answers: ["Two children.", "A boy and a girl."] },
-      { id: 12, question: "What color is the rug on the floor?", grammar: "Colours", answers: ["It's pink.", "Pink and blue."] },
-      { id: 13, question: "Where is the green pencil?", grammar: "Prepositions", answers: ["On the desk.", "Next to the bag."] },
-      { id: 14, question: "What color are the girl’s shoes?", grammar: "Colours", answers: ["Black.", "They are black."] },
-      { id: 15, question: "Is the boy reading or writing?", grammar: "Present Continuous", answers: ["He is reading.", "Reading a book."] },
-      { id: 16, question: "Is the door open or closed?", grammar: "Adjectives", answers: ["It is closed.", "Closed."] },
-      { id: 17, question: "What is on the teacher’s desk?", grammar: "Vocabulary", answers: ["A vase and a bag.", "Flowers."] },
-      { id: 18, question: "What is the girl writing?", grammar: "Present Continuous", answers: ["In her notebook.", "Writing a text."] },
-      { id: 19, question: "What color is the teacher’s dress?", grammar: "Colours", answers: ["Green.", "A green dress."] },
-      { id: 20, question: "Where are the books?", grammar: "Prepositions", answers: ["On the shelf.", "Behind the children."] },
-      { id: 21, question: "What is the boy looking at?", grammar: "Present Continuous", answers: ["A book.", "He is reading."] },
-      { id: 22, question: "Is the girl happy or sad?", grammar: "Adjectives", answers: ["She is happy.", "She's smiling."] },
-      { id: 23, question: "What is the teacher writing?", grammar: "Present Continuous", answers: ["Letters.", "The alphabet."] },
-      { id: 24, question: "What color is the boy’s hair?", grammar: "Description", answers: ["Brown.", "He has brown hair."] },
-      { id: 25, question: "Where is the door?", grammar: "Prepositions", answers: ["Behind the teacher.", "On the right."] },
-      { id: 26, question: "What is the girl wearing?", grammar: "Clothes", answers: ["A pink dress.", "Pink clothes."] },
-      { id: 27, question: "Is the teacher standing or sitting?", grammar: "Present Continuous", answers: ["Standing.", "She's standing."] },
-      { id: 28, question: "What can you see on the floor?", grammar: "Vocabulary", answers: ["A rug.", "A pink carpet."] },
-      { id: 29, question: "What is the teacher holding?", grammar: "Present Continuous", answers: ["Chalk.", "A piece of chalk."] },
-      { id: 30, question: "What are the children doing?", grammar: "Present Continuous", answers: ["They are studying.", "Reading and writing."] }
+      { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "Writing."] },
+      { id: 2, question: "How many flowers are in the vase?", answers: ["There are four flowers.", "Four."] },
+      { id: 3, question: "Where is the black handbag?", answers: ["It is on the desk.", "On the table."] },
+      { id: 4, question: "What color is the boy’s shirt?", answers: ["It's green.", "He is wearing a green shirt."] },
+      { id: 5, question: "What is the girl doing?", answers: ["She is writing.", "She's sitting and writing."] },
+      { id: 6, question: "Where is the red backpack?", answers: ["On the floor.", "Next to the girl."] },
+      { id: 7, question: "What color is the teacher's hair?", answers: ["Orange.", "Her hair is orange."] },
+      { id: 8, question: "Where is the tennis racket?", answers: ["Next to the door.", "On the floor."] },
+      { id: 9, question: "What letters can you see on the board?", answers: ["A, B, C, D.", "The alphabet."] },
+      { id: 10, question: "Is the teacher wearing glasses?", answers: ["Yes, she is.", "Yes."] },
+      { id: 11, question: "How many children are there?", answers: ["Two children.", "A boy and a girl."] },
+      { id: 12, question: "What color is the rug on the floor?", answers: ["It's pink.", "Pink and blue."] },
+      { id: 13, question: "Where is the green pencil?", answers: ["On the desk.", "Next to the bag."] },
+      { id: 14, question: "What color are the girl’s shoes?", answers: ["Black.", "They are black."] },
+      { id: 15, question: "Is the boy reading or writing?", answers: ["He is reading.", "Reading a book."] },
+      { id: 16, question: "Is the door open or closed?", answers: ["It is closed.", "Closed."] },
+      { id: 17, question: "What is on the teacher’s desk?", answers: ["A vase and a bag.", "Flowers."] },
+      { id: 18, question: "What is the girl writing?", answers: ["In her notebook.", "Writing a text."] },
+      { id: 19, question: "What color is the teacher’s dress?", answers: ["Green.", "A green dress."] },
+      { id: 20, question: "Where are the books?", answers: ["On the shelf.", "Behind the children."] },
+      { id: 21, question: "What is the boy looking at?", answers: ["A book.", "He is reading."] },
+      { id: 22, question: "Is the girl happy or sad?", answers: ["She is happy.", "She's smiling."] },
+      { id: 23, question: "What is the teacher writing?", answers: ["Letters.", "The alphabet."] },
+      { id: 24, question: "What color is the boy’s hair?", answers: ["Brown.", "He has brown hair."] },
+      { id: 25, question: "Where is the door?", answers: ["Behind the teacher.", "On the right."] },
+      { id: 26, question: "What is the girl wearing?", answers: ["A pink dress.", "Pink clothes."] },
+      { id: 27, question: "Is the teacher standing or sitting?", answers: ["Standing.", "She's standing."] },
+      { id: 28, question: "What can you see on the floor?", answers: ["A rug.", "A pink carpet."] },
+      { id: 29, question: "What is the teacher holding?", answers: ["Chalk.", "A piece of chalk."] },
+      { id: 30, question: "What are the children doing?", answers: ["They are studying.", "Reading and writing."] }
     ];
 
     let current = 0;
 
-    // Elementos
-    const questionNumber = document.getElementById("questionNumber");
-    const grammarTag = document.getElementById("grammarTag");
-    const questionText = document.getElementById("questionText");
-    const btnShowText = document.getElementById("btnShowText");
+    const qText = document.getElementById("questionText");
+    const qNum = document.getElementById("questionNumber");
+    const qCard = document.getElementById("qCard");
+    const btnShow = document.getElementById("btnShowText");
     const answerInput = document.getElementById("answerInput");
     const aiFeedback = document.getElementById("aiFeedback");
     const answersPanel = document.getElementById("answersPanel");
-    const answersList = document.getElementById("answersList");
-
-    const btnNext = document.getElementById("btnNext");
-    const btnPrev = document.getElementById("btnPrev");
-    const btnListen = document.getElementById("btnListen");
-    const btnMic = document.getElementById("btnMic");
-    const btnEvaluate = document.getElementById("btnEvaluate");
-    const btnToggleAnswers = document.getElementById("btnToggleAnswers");
 
     function loadQuestion() {
       const q = questions[current];
-      questionNumber.textContent = `Question ${current + 1}/${questions.length}`;
-      grammarTag.textContent = q.grammar;
-      questionText.textContent = q.question;
+      qNum.textContent = `Pregunta ${current + 1} / ${questions.length}`;
+      qText.textContent = q.question;
+      qCard.setAttribute('data-number', (current + 1).toString().padStart(2, '0'));
       
-      // Reset UI
-      questionText.style.filter = "blur(5px)";
-      questionText.style.opacity = "0.3";
-      btnShowText.innerHTML = "👁️ Show";
+      // Reset estilos
+      qText.style.filter = "blur(6px)";
+      qText.style.opacity = "0.3";
+      btnShow.textContent = "SHOW";
       answerInput.value = "";
       aiFeedback.style.display = "none";
       answersPanel.style.display = "none";
     }
 
-    // Inicializar
     loadQuestion();
 
-    // Zoom Imagen
-    document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex";
-    document.getElementById("modalClose").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
-    
-    // Instrucciones
-    document.getElementById("btnInfo").onclick = () => document.getElementById("infoModal").style.display = "flex";
-    document.getElementById("closeInfo").onclick = () => document.getElementById("infoModal").style.display = "none";
-
     // Mostrar/Ocultar Texto
-    btnShowText.onclick = () => {
-      const isHidden = questionText.style.filter !== "none";
-      questionText.style.filter = isHidden ? "none" : "blur(5px)";
-      questionText.style.opacity = isHidden ? "1" : "0.3";
-      btnShowText.innerHTML = isHidden ? "🙈 Hide" : "👁️ Show";
-    };
-
-    // Navegación
-    btnNext.onclick = () => { if(current < questions.length-1){ current++; loadQuestion(); } };
-    btnPrev.onclick = () => { if(current > 0){ current--; loadQuestion(); } };
-
-    // Audio
-    btnListen.onclick = () => {
-      const utter = new SpeechSynthesisUtterance(questions[current].question);
-      utter.lang = "en-US";
-      window.speechSynthesis.speak(utter);
-    };
-
-    // Respuestas
-    btnToggleAnswers.onclick = () => {
-      if(answersPanel.style.display === "none") {
-        answersList.innerHTML = "";
-        questions[current].answers.forEach(a => {
-          const div = document.createElement("div");
-          div.style.display = "flex";
-          div.style.justifyContent = "space-between";
-          div.style.marginBottom = "5px";
-          div.innerHTML = `<span>${a}</span><button onclick="speak('${a}')" style="padding:2px 5px; font-size:0.7rem;">🔊</button>`;
-          answersList.appendChild(div);
-        });
-        answersPanel.style.display = "block";
+    btnShow.onclick = () => {
+      if (qText.style.filter !== "none") {
+        qText.style.filter = "none";
+        qText.style.opacity = "1";
+        btnShow.textContent = "HIDE";
       } else {
-        answersPanel.style.display = "none";
+        qText.style.filter = "blur(6px)";
+        qText.style.opacity = "0.3";
+        btnShow.textContent = "SHOW";
       }
     };
 
-    window.speak = (text) => {
-      const u = new SpeechSynthesisUtterance(text);
+    // Navegación
+    document.getElementById("btnNext").onclick = () => { if(current < questions.length-1){ current++; loadQuestion(); } };
+    document.getElementById("btnPrev").onclick = () => { if(current > 0){ current--; loadQuestion(); } };
+
+    // Audio
+    document.getElementById("btnListen").onclick = () => {
+      const u = new SpeechSynthesisUtterance(questions[current].question);
       u.lang = "en-US";
       window.speechSynthesis.speak(u);
     };
 
-    // Micrófono
-    btnMic.onclick = () => {
-      const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if(!Recognition) return alert("Browser not supported");
-      const rec = new Recognition();
-      rec.lang = "en-US";
-      rec.onresult = (e) => { answerInput.value = e.results[0][0].transcript; };
-      rec.start();
+    // Zoom Imagen
+    document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+";
+    document.getElementById("modalBackdrop").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
+
+    // Info
+    document.getElementById("btnInfo").onclick = () => document.getElementById("infoModal").style.display = "flex
+	
+	
+		
+	
+	
+		Activar 3,50%* cashback
+	
+";
+
+    // Ver Respuestas
+    document.getElementById("btnToggleAnswers").onclick = () => {
+      const list = document.getElementById("answersList");
+      list.innerHTML = "";
+      questions[current].answers.forEach(a => {
+        const item = document.createElement("div");
+        item.style.padding = "10px 0";
+        item.style.borderBottom = "1px solid #eee";
+        item.innerHTML = `<span>${a}</span>`;
+        list.appendChild(item);
+      });
+      answersPanel.style.display = "block";
     };
 
     // Evaluar con IA
-    btnEvaluate.onclick = async () => {
+    document.getElementById("btnEvaluate").onclick = async () => {
       const user = answerInput.value.trim();
       if(!user) return;
       aiFeedback.style.display = "block";
       aiFeedback.textContent = "Checking...";
+      aiFeedback.className = "ai-feedback";
+      
       try {
         const res = await fetch("https://github.pabgartov.workers.dev/", {
           method: "POST",
@@ -345,7 +511,8 @@
         aiFeedback.textContent = data.result;
         aiFeedback.className = "ai-feedback " + (data.result.includes("✔️") ? "ok" : "error");
       } catch (e) {
-        aiFeedback.textContent = "Connection error";
+        aiFeedback.textContent = "Error de conexión";
+        aiFeedback.className = "ai-feedback error";
       }
     };
   </script>
