@@ -38,37 +38,45 @@
       position: relative;
     }
 
-    /* Header Estilo Screenshot */
+    /* Cabecera con miniatura en lugar de estrella */
     .app-header {
       background: var(--header-grad);
-      padding: 20px;
+      padding: 15px 20px;
       color: white;
       display: flex; align-items: center; gap: 15px;
     }
 
-    .star-icon { font-size: 2rem; }
-    .header-text h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
-    .header-text p { margin: 0; font-size: 0.85rem; opacity: 0.9; }
-
-    /* Scene Card (Caja Oscura) */
-    .scene-section {
-      background: #263238;
-      margin: 15px; border-radius: 15px;
-      padding: 12px; display: flex; align-items: center; gap: 15px;
-      color: white; cursor: pointer;
+    .header-thumb-container {
+      position: relative;
+      width: 60px; height: 60px;
+      cursor: pointer;
     }
-    .scene-thumb {
-      width: 70px; height: 70px; border-radius: 10px;
-      object-fit: cover; border: 2px solid #546e7a;
-    }
-    .scene-info { flex-grow: 1; }
-    .scene-info b { color: var(--yellow-tag); display: block; font-size: 0.9rem; }
-    .scene-info p { margin: 4px 0 0; font-size: 0.75rem; color: #b0bec5; }
 
-    /* Instrucciones (Caja Verde) */
+    .header-thumb {
+      width: 100%; height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+
+    .mini-lupa {
+      position: absolute;
+      bottom: -2px; right: -2px;
+      background: white;
+      border-radius: 50%;
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .header-text h1 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+    .header-text p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
+
+    /* Instrucciones (Recuadro verde arriba) */
     .instruction-box {
       background: #e8f5e9;
-      margin: 0 15px 15px; padding: 15px;
+      margin: 15px; padding: 15px;
       border-radius: 15px; border-left: 5px solid #81c784;
       font-size: 0.85rem; line-height: 1.4;
     }
@@ -77,17 +85,21 @@
     .status-row {
       display: flex; justify-content: space-between;
       padding: 0 15px; margin-bottom: 10px;
+      align-items: center;
     }
     .tag-yellow {
       background: var(--yellow-tag);
       padding: 6px 15px; border-radius: 20px;
       font-weight: 700; font-size: 0.85rem;
     }
-    .btn-actions {
+    .btn-show {
       background: #b39ddb; color: white;
       padding: 6px 15px; border-radius: 20px;
-      font-size: 0.8rem; font-weight: 700; border: none;
+      font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer;
     }
+
+    /* Botón Escuchar (Encima de la pregunta) */
+    .listen-wrapper { padding: 0 15px 10px; }
 
     /* Card de la Pregunta */
     .question-card {
@@ -112,57 +124,45 @@
       filter: blur(6px); opacity: 0.3; transition: all 0.3s;
     }
 
-    /* Botones Estilo Píldora */
+    /* Input y Botones */
+    .input-section { padding: 0 15px; }
+    .input-label { font-size: 0.85rem; font-weight: 700; color: #546e7a; margin-bottom: 8px; display: block; }
+    
+    .input-wrapper { display: flex; gap: 10px; align-items: stretch; margin-bottom: 15px; }
+    textarea {
+      flex-grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
+      padding: 12px; font-size: 1rem; min-height: 60px; outline: none;
+    }
+
     .btn-pill {
       border-radius: 30px; border: none;
-      padding: 12px 25px; font-weight: 700;
+      padding: 10px 20px; font-weight: 700;
       display: inline-flex; align-items: center; gap: 8px;
       cursor: pointer; transition: transform 0.1s;
-      color: white; font-size: 0.9rem;
+      color: white; font-size: 0.85rem;
     }
     .btn-pill:active { transform: scale(0.95); }
     
-    .btn-blue { background: var(--blue-btn); box-shadow: 0 4px 10px rgba(66, 165, 245, 0.3); }
-    .btn-purple { background: var(--purple-btn); box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3); }
+    .btn-blue { background: var(--blue-btn); }
+    .btn-purple { background: var(--purple-btn); }
     .btn-yellow { background: var(--yellow-tag); color: #5f4b00; }
     .btn-green { background: var(--green-btn); }
     .btn-grey { background: #eceff1; color: #546e7a; }
 
-    /* Input Area */
-    .input-section { padding: 0 15px; margin-top: 15px; }
-    .input-label { font-size: 0.85rem; font-weight: 700; color: #546e7a; margin-bottom: 8px; display: block; }
-    .input-wrapper { display: flex; gap: 10px; align-items: flex-start; }
-    
-    textarea {
-      flex-grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
-      padding: 12px; font-size: 1rem; min-height: 50px; outline: none;
-    }
-    textarea:focus { border-color: var(--blue-btn); }
+    .action-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
 
-    /* Footer / Navegación */
-    .nav-footer {
-      margin-top: auto; padding: 20px 15px;
-      display: flex; justify-content: space-between;
-    }
-
-    /* Feedback & Panel Respuestas */
+    /* Feedback */
     .ai-feedback { margin: 10px 15px; padding: 12px; border-radius: 12px; display: none; font-size: 0.9rem; }
     .ai-feedback.ok { background: #e8f5e9; color: #2e7d32; }
     .ai-feedback.error { background: #ffebee; color: #c62828; }
 
-    .answers-panel {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: white; border-radius: 25px 25px 0 0;
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-      padding: 20px; display: none; z-index: 100;
-    }
+    /* Navegación inferior */
+    .nav-footer { margin-top: auto; padding: 20px 15px; display: flex; justify-content: space-between; }
 
-    /* Modales */
-    .modal-full {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-      display: none; justify-content: center; align-items: center; z-index: 1000;
-    }
+    /* Modales y Paneles */
+    .modal-full { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
     .modal-img { max-width: 95%; border-radius: 10px; }
+    .answers-panel { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-radius: 25px 25px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); padding: 20px; display: none; z-index: 100; }
   </style>
 </head>
 
@@ -170,47 +170,47 @@
   <div class="app-container">
     
     <header class="app-header">
-      <div class="star-icon">⭐</div>
+      <div class="header-thumb-container" id="sceneThumb">
+        <img src="scene-classroom.png" class="header-thumb" alt="Miniatura">
+        <div class="mini-lupa">🔍</div>
+      </div>
       <div class="header-text">
         <h1>Cambridge Speaking Practice</h1>
         <p>Children 2 – Scene Card</p>
       </div>
-      <button id="btnInfo" style="margin-left:auto; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">ℹ️</button>
+      <button id="btnInfo" style="margin-left:auto; background:none; border:none; color:white; font-size:1.4rem; cursor:pointer;">ℹ️</button>
     </header>
 
-    <div class="scene-section" id="sceneThumb">
-      <img src="scene-classroom.png" class="scene-thumb" alt="Classroom">
-      <div class="scene-info">
-        <b>🖼️ Scene Card</b>
-        <p>Tap to zoom in and explore the classroom</p>
-      </div>
-      <div style="font-size: 1.2rem; opacity: 0.5;">🔍</div>
-    </div>
-
     <div class="instruction-box">
-      💡 <b>Cómo usar:</b> Pulsa 🔊 <i>Escuchar</i> para oír la pregunta. Escribe tu respuesta y pulsa 🤖 <i>Evaluar</i> para que la IA la corrija, o ⭐ <i>Ver respuestas</i> para la guía completa.
+      💡 <b>Cómo usar:</b> Pulsa 🔊 <i>Escuchar</i> para oír la pregunta. Escribe tu respuesta o usa el 🎤 <i>Micrófono</i>. Pulsa 🤖 <i>Corregir con IA</i> para evaluar.
     </div>
 
     <div class="status-row">
       <div class="tag-yellow" id="questionNumber">Pregunta 1 / 30</div>
-      <button class="btn-actions" id="btnShowText">SHOW</button>
+      <button class="btn-show" id="btnShowText">SHOW</button>
+    </div>
+
+    <div class="listen-wrapper">
+      <button class="btn-pill btn-blue" id="btnListen">🔊 Escuchar</button>
     </div>
 
     <div class="question-card" id="qCard" data-number="01">
       <div class="question-text" id="questionText">What is the teacher doing?</div>
     </div>
 
-    <div style="padding: 0 15px;">
-      <button class="btn-pill btn-blue" id="btnListen">🔊 Escuchar</button>
-    </div>
-
     <div class="input-section">
       <label class="input-label">✏️ Escribe tu respuesta en inglés:</label>
       <div class="input-wrapper">
-        <textarea id="answerInput" placeholder="Type here..."></textarea>
-        <button class="btn-pill btn-purple" id="btnEvaluate" style="padding: 12px;"><span style="font-size:1.2rem">🤖</span> Evaluar</button>
+        <textarea id="answerInput" placeholder="Escribe aquí..."></textarea>
+        <button class="btn-pill btn-purple" id="btnMic" style="padding: 15px;">
+          <span style="font-size:1.2rem">🎤</span>
+        </button>
       </div>
-      <button class="btn-pill btn-yellow" id="btnToggleAnswers" style="margin-top:10px; width:100%; justify-content:center;">⭐ Ver respuestas</button>
+
+      <div class="action-row">
+        <button class="btn-pill btn-purple" id="btnEvaluate" style="flex:1; justify-content:center;">🤖 Corregir con IA</button>
+        <button class="btn-pill btn-yellow" id="btnToggleAnswers" style="flex:1; justify-content:center;">⭐ Ver respuestas</button>
+      </div>
     </div>
 
     <div class="ai-feedback" id="aiFeedback"></div>
@@ -234,16 +234,8 @@
     <img src="scene-classroom.png" class="modal-img">
   </div>
 
-  <div id="infoModal" class="modal-full">
-    <div style="background:white; padding:25px; border-radius:20px; max-width:85%; position:relative;">
-      <h3 style="color:var(--purple-btn); margin-top:0">Instrucciones</h3>
-      <p>Este entrenamiento ayuda a mejorar el "Speaking" del examen de Cambridge.</p>
-      <p><b>Tips:</b> No hace falta ver el texto, intenta entenderlo solo de oído. Si te atascas, dale a SHOW.</p>
-      <button onclick="document.getElementById('infoModal').style.display='none'" class="btn-pill btn-purple" style="width:100%; justify-content:center;">Entendido</button>
-    </div>
-  </div>
-
   <script>
+    /* LÓGICA Y PREGUNTAS MANTENIDAS */
     const questions = [
       { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "Writing."] },
       { id: 2, question: "How many flowers are in the vase?", answers: ["There are four flowers.", "Four."] },
@@ -278,28 +270,23 @@
     ];
 
     let current = 0;
-
     const qText = document.getElementById("questionText");
     const qNum = document.getElementById("questionNumber");
     const qCard = document.getElementById("qCard");
-    const btnShow = document.getElementById("btnShowText");
     const answerInput = document.getElementById("answerInput");
     const aiFeedback = document.getElementById("aiFeedback");
-    const answersPanel = document.getElementById("answersPanel");
+    const btnShow = document.getElementById("btnShowText");
 
     function loadQuestion() {
       const q = questions[current];
       qNum.textContent = `Pregunta ${current + 1} / ${questions.length}`;
       qText.textContent = q.question;
       qCard.setAttribute('data-number', (current + 1).toString().padStart(2, '0'));
-      
-      // Reset estilos
       qText.style.filter = "blur(6px)";
       qText.style.opacity = "0.3";
       btnShow.textContent = "SHOW";
       answerInput.value = "";
       aiFeedback.style.display = "none";
-      answersPanel.style.display = "none";
     }
 
     loadQuestion();
@@ -307,13 +294,9 @@
     // Mostrar/Ocultar Texto
     btnShow.onclick = () => {
       if (qText.style.filter !== "none") {
-        qText.style.filter = "none";
-        qText.style.opacity = "1";
-        btnShow.textContent = "HIDE";
+        qText.style.filter = "none"; qText.style.opacity = "1"; btnShow.textContent = "HIDE";
       } else {
-        qText.style.filter = "blur(6px)";
-        qText.style.opacity = "0.3";
-        btnShow.textContent = "SHOW";
+        qText.style.filter = "blur(6px)"; qText.style.opacity = "0.3"; btnShow.textContent = "SHOW";
       }
     };
 
@@ -324,16 +307,37 @@
     // Audio
     document.getElementById("btnListen").onclick = () => {
       const u = new SpeechSynthesisUtterance(questions[current].question);
-      u.lang = "en-US";
-      window.speechSynthesis.speak(u);
+      u.lang = "en-US"; window.speechSynthesis.speak(u);
+    };
+
+    // Reconocimiento de Voz (Micrófono)
+    document.getElementById("btnMic").onclick = () => {
+      if (!("webkitSpeechRecognition" in window)) { alert("Navegador no compatible"); return; }
+      const rec = new webkitSpeechRecognition();
+      rec.lang = "en-US";
+      rec.onresult = (event) => { answerInput.value = event.results[0][0].transcript; };
+      rec.start();
+    };
+
+    // Corregir con IA
+    document.getElementById("btnEvaluate").onclick = async () => {
+      const user = answerInput.value.trim();
+      if(!user) return;
+      aiFeedback.style.display = "block"; aiFeedback.textContent = "Checking...";
+      try {
+        const res = await fetch("https://github.pabgartov.workers.dev/", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: questions[current].question, answers: questions[current].answers, user })
+        });
+        const data = await res.json();
+        aiFeedback.textContent = data.result;
+        aiFeedback.className = "ai-feedback " + (data.result.includes("✔️") ? "ok" : "error");
+      } catch (e) { aiFeedback.textContent = "Error de conexión"; }
     };
 
     // Zoom Imagen
     document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex";
     document.getElementById("modalBackdrop").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
-
-    // Info
-    document.getElementById("btnInfo").onclick = () => document.getElementById("infoModal").style.display = "flex";
 
     // Ver Respuestas
     document.getElementById("btnToggleAnswers").onclick = () => {
@@ -341,35 +345,10 @@
       list.innerHTML = "";
       questions[current].answers.forEach(a => {
         const item = document.createElement("div");
-        item.style.padding = "10px 0";
-        item.style.borderBottom = "1px solid #eee";
-        item.innerHTML = `<span>${a}</span>`;
-        list.appendChild(item);
+        item.style.padding = "10px 0"; item.style.borderBottom = "1px solid #eee";
+        item.innerHTML = `<span>${a}</span>`; list.appendChild(item);
       });
-      answersPanel.style.display = "block";
-    };
-
-    // Evaluar con IA
-    document.getElementById("btnEvaluate").onclick = async () => {
-      const user = answerInput.value.trim();
-      if(!user) return;
-      aiFeedback.style.display = "block";
-      aiFeedback.textContent = "Checking...";
-      aiFeedback.className = "ai-feedback";
-      
-      try {
-        const res = await fetch("https://github.pabgartov.workers.dev/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: questions[current].question, answers: questions[current].answers, user })
-        });
-        const data = await res.json();
-        aiFeedback.textContent = data.result;
-        aiFeedback.className = "ai-feedback " + (data.result.includes("✔️") ? "ok" : "error");
-      } catch (e) {
-        aiFeedback.textContent = "Error de conexión";
-        aiFeedback.className = "ai-feedback error";
-      }
+      document.getElementById("answersPanel").style.display = "block";
     };
   </script>
 </body>
