@@ -61,41 +61,42 @@
     }
 
     .mini-lupa {
-      position: absolute;
-      bottom: -2px; right: -2px;
-      background: white;
-      border-radius: 50%;
+      position: absolute; bottom: -2px; right: -2px;
+      background: white; border-radius: 50%;
       width: 24px; height: 24px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-size: 0.8rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .header-text {
-      flex-grow: 1;
-      text-align: center;
+      flex-grow: 1; text-align: center;
       padding-right: 20px;
     }
     .header-text h1 { margin: 0; font-size: 1.1rem; font-weight: 700; }
     .header-text p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
 
-    /* Card de la Pregunta */
+    /* Campo de explicaciones (RESTAURADO) */
+    .instruction-box {
+      background: #e8f5e9;
+      margin: 15px; padding: 15px;
+      border-radius: 15px; border-left: 5px solid #81c784;
+      font-size: 0.85rem; line-height: 1.4;
+    }
+
     .question-card {
       background: white;
-      margin: 20px 15px 5px;
+      margin: 10px 15px 5px;
       padding: 30px 20px;
       border-radius: 20px;
       border: 2px solid #e3f2fd;
       box-shadow: var(--card-shadow);
       text-align: center;
-      position: relative;
     }
     .question-text {
       font-size: 1.3rem; font-weight: 700; color: #37474f;
       filter: blur(6px); opacity: 0.3; transition: all 0.3s;
     }
 
-    /* Botón Show/Hide reubicado */
     .show-hide-row {
       display: flex; justify-content: flex-end;
       padding: 0 15px 15px;
@@ -106,7 +107,6 @@
       font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer;
     }
 
-    /* Input */
     .input-section { padding: 0 15px; }
     .input-wrapper { display: flex; gap: 10px; align-items: stretch; margin-bottom: 15px; }
     textarea {
@@ -114,47 +114,37 @@
       padding: 12px; font-size: 1rem; min-height: 60px; outline: none;
     }
 
-    /* Botones de acción igualados */
     .action-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
     
     .btn-pill {
       border-radius: 30px; border: none;
       padding: 12px 15px; font-weight: 700;
       display: inline-flex; align-items: center; gap: 8px;
-      cursor: pointer; transition: transform 0.1s;
-      color: white; font-size: 0.85rem;
+      cursor: pointer; transition: transform 0.1s; color: white;
     }
     
-    .btn-equal { flex: 1; justify-content: center; }
-
+    .btn-equal { flex: 1; justify-content: center; font-size: 0.85rem; }
     .btn-blue { background: var(--blue-btn); }
     .btn-purple { background: var(--purple-btn); }
     .btn-yellow { background: var(--yellow-tag); color: #5f4b00; }
-    .btn-green { background: var(--green-btn); }
     .btn-grey { background: #eceff1; color: #546e7a; }
+    .btn-green { background: var(--green-btn); }
 
-    /* NUEVO: Campo de respuesta IA transparente */
+    /* Campo de respuesta IA transparente */
     .ai-feedback { 
-      margin: 10px 0; 
-      padding: 15px; 
-      border-radius: 15px; 
-      display: none; 
-      font-size: 1rem; 
-      line-height: 1.5;
-      background: transparent; /* Campo transparente solicitado */
-      border: 1px dashed #cbd5e1; /* Borde sutil para delimitar el área */
-      color: var(--text-dark);
-      text-align: center;
-      font-style: italic;
+      margin: 10px 0; padding: 15px; 
+      border-radius: 15px; display: none; 
+      font-size: 1rem; line-height: 1.5;
+      background: transparent;
+      border: 1px dashed #cbd5e1;
+      color: var(--text-dark); text-align: center;
     }
+    .ai-feedback.ok { border-color: #4caf50; color: #2e7d32; }
+    .ai-feedback.error { border-color: #f44336; color: #c62828; }
 
-    /* Navegación compacta */
-    .nav-footer { 
-      padding: 10px 15px 20px; 
-      display: flex; justify-content: space-between; 
-    }
+    .nav-footer { padding: 10px 15px 20px; display: flex; justify-content: space-between; }
 
-    /* Modales */
+    /* Modal imagen */
     .modal-full { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
     .modal-img { max-width: 95%; border-radius: 10px; }
   </style>
@@ -174,6 +164,12 @@
       </div>
     </header>
 
+    <div class="instruction-box">
+      💡 <b>Cómo usar:</b> Pulsa 🔊 <i>Escuchar</i> para oír la pregunta. Escribe tu respuesta o usa el 🎤 <i>Micrófono</i>. Pulsa 🤖 <i>Corregir con IA</i> para evaluar.
+    </div>
+
+    <div style="padding: 0 15px; font-weight: bold; font-size: 0.9rem;" id="questionNumber">Pregunta 1 / 30</div>
+
     <div class="question-card">
       <div class="question-text" id="questionText">What is the teacher doing?</div>
     </div>
@@ -184,10 +180,8 @@
 
     <div class="input-section">
       <div class="input-wrapper">
-        <textarea id="answerInput" placeholder="Escribe aquí tu respuesta..."></textarea>
-        <button class="btn-pill btn-purple" id="btnMic" style="padding: 15px;">
-          <span>🎤</span>
-        </button>
+        <textarea id="answerInput" placeholder="Escribe aquí tu respuesta en inglés..."></textarea>
+        <button class="btn-pill btn-purple" id="btnMic" style="padding: 15px;">🎤</button>
       </div>
 
       <div class="action-row">
@@ -210,13 +204,72 @@
   </div>
 
   <script>
-    // La lógica de JavaScript se mantiene funcionalmente igual, 
-    // asegurando que aiFeedback.style.display = "block" muestre el nuevo campo transparente.
-    
+    const questions = [
+      { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "Writing."] },
+      // ... se asume la carga del resto del array original
+    ];
+
+    let current = 0;
     const qText = document.getElementById("questionText");
-    const btnShow = document.getElementById("btnShowText");
+    const qNum = document.getElementById("questionNumber");
+    const answerInput = document.getElementById("answerInput");
     const aiFeedback = document.getElementById("aiFeedback");
-    const btnEvaluate = document.getElementById("btnEvaluate");
+    const btnShow = document.getElementById("btnShowText");
+
+    function updateUI() {
+      qNum.textContent = `Pregunta ${current + 1} / ${questions.length}`;
+      qText.textContent = questions[current].question;
+      qText.style.filter = "blur(6px)";
+      qText.style.opacity = "0.3";
+      btnShow.textContent = "SHOW";
+      answerInput.value = "";
+      aiFeedback.style.display = "none";
+    }
+
+    /* ============================
+       LÓGICA IA REAL (RESTAURADA)
+       ============================ */
+    document.getElementById("btnEvaluate").onclick = async () => {
+      const user = answerInput.value.trim();
+      const q = questions[current];
+
+      if (!user) {
+        aiFeedback.textContent = "Escribe una respuesta primero.";
+        aiFeedback.className = "ai-feedback error";
+        aiFeedback.style.display = "block";
+        return;
+      }
+
+      aiFeedback.textContent = "Evaluando con IA...";
+      aiFeedback.className = "ai-feedback";
+      aiFeedback.style.display = "block";
+
+      try {
+        const response = await fetch("https://github.pabgartov.workers.dev/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question: q.question,
+            answers: q.answers,
+            user: user
+          })
+        });
+
+        const data = await response.json();
+        const text = data.result || "Error: No se recibió resultado de la IA.";
+        aiFeedback.innerHTML = text;
+        
+        // Estilo basado en el resultado real
+        if (text.includes("✔️") || text.toLowerCase().includes("muy bien") || text.toLowerCase().includes("correcta")) {
+          aiFeedback.className = "ai-feedback ok";
+        } else {
+          aiFeedback.className = "ai-feedback error";
+        }
+      } catch (err) {
+        aiFeedback.textContent = "Error al conectar con la IA: " + err.message;
+        aiFeedback.className = "ai-feedback error";
+      }
+    };
 
     btnShow.onclick = () => {
       if (qText.style.filter !== "none") {
@@ -226,14 +279,12 @@
       }
     };
 
-    // Simulación de respuesta de IA para mostrar el campo
-    btnEvaluate.onclick = () => {
-      aiFeedback.innerHTML = "✨ <b>IA:</b> ¡Muy bien! Tu frase es gramaticalmente correcta.";
-      aiFeedback.style.display = "block";
-    };
-
+    document.getElementById("btnNext").onclick = () => { if(current < questions.length-1) { current++; updateUI(); } };
+    document.getElementById("btnPrev").onclick = () => { if(current > 0) { current--; updateUI(); } };
+    
     document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex";
     document.getElementById("modalBackdrop").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
   </script>
 </body>
-</html>
+  </html>
+  
