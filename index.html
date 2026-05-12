@@ -38,7 +38,6 @@
       position: relative;
     }
 
-    /* Cabecera actualizada: Miniatura 4:3 y Texto Centrado */
     .app-header {
       background: var(--header-grad);
       padding: 15px 20px;
@@ -48,7 +47,7 @@
 
     .header-thumb-container {
       position: relative;
-      width: 90px; height: 68px; /* Aumento 50% (de 60x60 a ~90x68) y formato 4:3 */
+      width: 90px; height: 68px;
       cursor: pointer;
       flex-shrink: 0;
     }
@@ -61,25 +60,17 @@
     }
 
     .mini-lupa {
-      position: absolute;
-      bottom: -2px; right: -2px;
-      background: white;
-      border-radius: 50%;
+      position: absolute; bottom: -2px; right: -2px;
+      background: white; border-radius: 50%;
       width: 24px; height: 24px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-size: 0.8rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    .header-text {
-      flex-grow: 1;
-      text-align: center;
-      padding-right: 20px; /* Para equilibrar visualmente el espacio de la imagen */
-    }
+    .header-text { flex-grow: 1; text-align: center; padding-right: 20px; }
     .header-text h1 { margin: 0; font-size: 1.1rem; font-weight: 700; }
     .header-text p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
 
-    /* Instrucciones */
     .instruction-box {
       background: #e8f5e9;
       margin: 15px; padding: 15px;
@@ -87,25 +78,19 @@
       font-size: 0.85rem; line-height: 1.4;
     }
 
-    /* Progreso */
-    .status-row {
-      display: flex; justify-content: space-between;
-      padding: 0 15px; margin-bottom: 10px;
-      align-items: center;
-    }
+    .status-row { padding: 0 15px; margin-bottom: 10px; }
     .tag-yellow {
       background: var(--yellow-tag);
+      display: inline-block;
       padding: 6px 15px; border-radius: 20px;
       font-weight: 700; font-size: 0.85rem;
     }
 
-    /* Escuchar */
     .listen-wrapper { padding: 0 15px 10px; }
 
-    /* Card de la Pregunta */
     .question-card {
       background: white;
-      margin: 0 15px 5px; /* Margen inferior reducido */
+      margin: 0 15px 5px;
       padding: 30px 20px;
       border-radius: 20px;
       border: 2px solid #e3f2fd;
@@ -118,7 +103,6 @@
       filter: blur(6px); opacity: 0.3; transition: all 0.3s;
     }
 
-    /* Botón Show/Hide reubicado a la derecha debajo de la pregunta */
     .show-hide-row {
       display: flex; justify-content: flex-end;
       padding: 0 15px 15px;
@@ -129,7 +113,6 @@
       font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer;
     }
 
-    /* Input */
     .input-section { padding: 0 15px; }
     .input-wrapper { display: flex; gap: 10px; align-items: stretch; margin-bottom: 15px; }
     textarea {
@@ -137,7 +120,6 @@
       padding: 12px; font-size: 1rem; min-height: 60px; outline: none;
     }
 
-    /* Botones de acción igualados */
     .action-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
     
     .btn-pill {
@@ -148,25 +130,32 @@
       color: white; font-size: 0.85rem;
     }
     
-    .btn-equal { flex: 1; justify-content: center; } /* Tamaño igualado */
-
+    .btn-equal { flex: 1; justify-content: center; }
     .btn-blue { background: var(--blue-btn); }
     .btn-purple { background: var(--purple-btn); }
     .btn-yellow { background: var(--yellow-tag); color: #5f4b00; }
     .btn-green { background: var(--green-btn); }
     .btn-grey { background: #eceff1; color: #546e7a; }
 
-    /* Navegación compacta */
+    /* Campo de respuesta IA corregido y ubicado */
+    .ai-feedback { 
+      margin: 10px 0; padding: 15px; 
+      border-radius: 15px; display: none; 
+      font-size: 1rem; line-height: 1.5;
+      background: transparent;
+      border: 1px dashed #cbd5e1;
+      color: var(--text-dark); text-align: center;
+      font-style: italic;
+    }
+    .ai-feedback.ok { border-color: #4caf50; color: #2e7d32; font-style: normal; }
+    .ai-feedback.error { border-color: #f44336; color: #c62828; }
+
     .nav-footer { 
-      margin-top: 10px; /* Reducida distancia con los botones superiores */
+      margin-top: auto;
       padding: 10px 15px 20px; 
       display: flex; justify-content: space-between; 
     }
 
-    .ai-feedback { margin: 5px 15px; padding: 12px; border-radius: 12px; display: none; font-size: 0.9rem; }
-    .ai-feedback.ok { background: #e8f5e9; color: #2e7d32; }
-
-    /* Modales */
     .modal-full { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
     .modal-img { max-width: 95%; border-radius: 10px; }
   </style>
@@ -198,7 +187,7 @@
       <button class="btn-pill btn-blue" id="btnListen">🔊 Escuchar</button>
     </div>
 
-    <div class="question-card" id="qCard">
+    <div class="question-card">
       <div class="question-text" id="questionText">What is the teacher doing?</div>
     </div>
 
@@ -208,19 +197,17 @@
 
     <div class="input-section">
       <div class="input-wrapper">
-        <textarea id="answerInput" placeholder="Escribe aquí tu respuesta..."></textarea>
-        <button class="btn-pill btn-purple" id="btnMic" style="padding: 15px;">
-          <span>🎤</span>
-        </button>
+        <textarea id="answerInput" placeholder="Escribe aquí tu respuesta en inglés..."></textarea>
+        <button class="btn-pill btn-purple" id="btnMic" style="padding: 15px;">🎤</button>
       </div>
 
       <div class="action-row">
         <button class="btn-pill btn-purple btn-equal" id="btnEvaluate">🤖 Corregir con IA</button>
         <button class="btn-pill btn-yellow btn-equal" id="btnToggleAnswers">⭐ Ver respuestas</button>
       </div>
-    </div>
 
-    <div class="ai-feedback" id="aiFeedback"></div>
+      <div class="ai-feedback" id="aiFeedback"></div>
+    </div>
 
     <footer class="nav-footer">
       <button class="btn-pill btn-grey" id="btnPrev">← Anterior</button>
@@ -235,8 +222,9 @@
 
   <script>
     const questions = [
-      { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "Writing."] },
-      // ... se mantienen las 30 preguntas anteriores del archivo
+      { id: 1, question: "What is the teacher doing?", answers: ["She is writing on the board.", "She's writing.", "Writing on the blackboard."] },
+      { id: 2, question: "How many children are there?", answers: ["There are six children.", "Six."] },
+      // ... rellena con tus 30 preguntas
     ];
 
     let current = 0;
@@ -246,9 +234,10 @@
     const aiFeedback = document.getElementById("aiFeedback");
     const btnShow = document.getElementById("btnShowText");
 
-    function loadQuestion() {
-      qNum.textContent = `Pregunta ${current + 1} / 30`;
-      qText.textContent = "What is the teacher doing?"; // Simulación, cargar del array
+    function updateUI() {
+      const q = questions[current];
+      qNum.textContent = `Pregunta ${current + 1} / ${questions.length}`;
+      qText.textContent = q.question;
       qText.style.filter = "blur(6px)";
       qText.style.opacity = "0.3";
       btnShow.textContent = "SHOW";
@@ -256,6 +245,87 @@
       aiFeedback.style.display = "none";
     }
 
+    // --- FUNCIONALIDAD IA (WORKER CLOUDFLARE) ---
+    document.getElementById("btnEvaluate").onclick = async () => {
+      const userText = answerInput.value.trim();
+      if (!userText) {
+        alert("Por favor, escribe o dicta una respuesta primero.");
+        return;
+      }
+
+      aiFeedback.innerHTML = "⌛ Analizando tu respuesta...";
+      aiFeedback.className = "ai-feedback";
+      aiFeedback.style.display = "block";
+
+      try {
+        const response = await fetch("https://github.pabgartov.workers.dev/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question: questions[current].question,
+            answers: questions[current].answers,
+            user: userText
+          })
+        });
+
+        const data = await response.json();
+        const resultText = data.result || "No se pudo obtener una evaluación.";
+        
+        aiFeedback.innerHTML = resultText;
+        
+        // Cambiar color según si es correcto o tiene correcciones
+        if (resultText.includes("✔️") || resultText.toLowerCase().includes("muy bien")) {
+          aiFeedback.className = "ai-feedback ok";
+        } else {
+          aiFeedback.className = "ai-feedback error";
+        }
+      } catch (err) {
+        aiFeedback.innerHTML = "❌ Error al conectar con la IA: " + err.message;
+        aiFeedback.className = "ai-feedback error";
+      }
+    };
+
+    // --- MOSTRAR RESPUESTAS SUGERIDAS ---
+    document.getElementById("btnToggleAnswers").onclick = () => {
+      if (aiFeedback.style.display === "block") {
+        aiFeedback.style.display = "none";
+      } else {
+        aiFeedback.innerHTML = `<b>Respuestas posibles:</b><br>• ${questions[current].answers.join('<br>• ')}`;
+        aiFeedback.className = "ai-feedback";
+        aiFeedback.style.display = "block";
+      }
+    };
+
+    // --- NAVEGACIÓN ---
+    document.getElementById("btnNext").onclick = () => {
+      if (current < questions.length - 1) { current++; updateUI(); }
+    };
+    document.getElementById("btnPrev").onclick = () => {
+      if (current > 0) { current--; updateUI(); }
+    };
+
+    // --- VOZ (ESCUCHAR) ---
+    document.getElementById("btnListen").onclick = () => {
+      const msg = new SpeechSynthesisUtterance(questions[current].question);
+      msg.lang = 'en-US';
+      window.speechSynthesis.speak(msg);
+    };
+
+    // --- MICRÓFONO ---
+    document.getElementById("btnMic").onclick = () => {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+      aiFeedback.innerHTML = "🎤 Escuchando...";
+      aiFeedback.style.display = "block";
+
+      recognition.onresult = (event) => {
+        answerInput.value = event.results[0][0].transcript;
+        aiFeedback.style.display = "none";
+      };
+    };
+
+    // --- UI AUXILIAR ---
     btnShow.onclick = () => {
       if (qText.style.filter !== "none") {
         qText.style.filter = "none"; qText.style.opacity = "1"; btnShow.textContent = "HIDE";
@@ -267,7 +337,8 @@
     document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex";
     document.getElementById("modalBackdrop").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
 
-    // Lógica de navegación y botones se mantiene igual que en la versión anterior
+    // Inicializar
+    updateUI();
   </script>
 </body>
 </html>
