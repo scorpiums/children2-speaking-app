@@ -1,36 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta
-	
-	
-		
-	
-	
-		Activar hasta 9,10% cashback
-	
- charset="UTF-8" />
+  <meta charset="UTF-8" />
   <title>Cambridge Speaking Practice – Children 2</title>
-  <meta
-	
-	
-		
-	
-	
-		Activar hasta 9,10% cashback
-	
- name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="manifest" href="manifest.webmanifest">
-  <meta
-	
-	
-		
-	
-	
-		Activar hasta 9,10% cashback
-	
- name="theme-color" content="#9c27b0">
+  <meta name="theme-color" content="#9c27b0">
 
   <style>
     :root {
@@ -50,15 +26,7 @@
       margin: 0; padding: 0;
       background-color: var(--bg-light);
       color: var(--text-dark);
-      display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; justify-content: center;
+      display: flex; justify-content: center;
       min-height: 100vh;
     }
 
@@ -66,23 +34,7 @@
       max-width: 500px; width: 100%;
       background: white;
       min-height: 100vh;
-      display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
--direction: column;
+      display: flex; flex-direction: column;
       position: relative;
     }
 
@@ -91,15 +43,7 @@
       background: var(--header-grad);
       padding: 20px;
       color: white;
-      display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; align-items: center; gap: 15px;
+      display: flex; align-items: center; gap: 15px;
     }
 
     .star-icon { font-size: 2rem; }
@@ -110,30 +54,14 @@
     .scene-section {
       background: #263238;
       margin: 15px; border-radius: 15px;
-      padding: 12px; display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; align-items: center; gap: 15px;
+      padding: 12px; display: flex; align-items: center; gap: 15px;
       color: white; cursor: pointer;
     }
     .scene-thumb {
       width: 70px; height: 70px; border-radius: 10px;
       object-fit: cover; border: 2px solid #546e7a;
     }
-    .scene-info { flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
--grow: 1; }
+    .scene-info { flex-grow: 1; }
     .scene-info b { color: var(--yellow-tag); display: block; font-size: 0.9rem; }
     .scene-info p { margin: 4px 0 0; font-size: 0.75rem; color: #b0bec5; }
 
@@ -147,15 +75,7 @@
 
     /* Tags de Progreso */
     .status-row {
-      display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; justify-content: space-between;
+      display: flex; justify-content: space-between;
       padding: 0 15px; margin-bottom: 10px;
     }
     .tag-yellow {
@@ -196,15 +116,7 @@
     .btn-pill {
       border-radius: 30px; border: none;
       padding: 12px 25px; font-weight: 700;
-      display: inline-flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
       cursor: pointer; transition: transform 0.1s;
       color: white; font-size: 0.9rem;
     }
@@ -219,34 +131,10 @@
     /* Input Area */
     .input-section { padding: 0 15px; margin-top: 15px; }
     .input-label { font-size: 0.85rem; font-weight: 700; color: #546e7a; margin-bottom: 8px; display: block; }
-    .input-wrapper { display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; gap: 10px; align-items: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
--start; }
+    .input-wrapper { display: flex; gap: 10px; align-items: flex-start; }
     
     textarea {
-      flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
--grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
+      flex-grow: 1; border: 2px solid #e0e0e0; border-radius: 15px;
       padding: 12px; font-size: 1rem; min-height: 50px; outline: none;
     }
     textarea:focus { border-color: var(--blue-btn); }
@@ -254,15 +142,7 @@
     /* Footer / Navegación */
     .nav-footer {
       margin-top: auto; padding: 20px 15px;
-      display: flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; justify-content: space-between;
+      display: flex; justify-content: space-between;
     }
 
     /* Feedback & Panel Respuestas */
@@ -341,15 +221,7 @@
     </footer>
 
     <div class="answers-panel" id="answersPanel">
-      <div style="display:flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-; justify-content:space-between; margin-bottom:15px;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
         <b>Model Answers</b>
         <button onclick="document.getElementById('answersPanel').style.display='none'" style="border:none; background:none; font-weight:bold; color:var(--purple-btn)">CERRAR</button>
       </div>
@@ -457,27 +329,11 @@
     };
 
     // Zoom Imagen
-    document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-";
+    document.getElementById("sceneThumb").onclick = () => document.getElementById("modalBackdrop").style.display = "flex";
     document.getElementById("modalBackdrop").onclick = () => document.getElementById("modalBackdrop").style.display = "none";
 
     // Info
-    document.getElementById("btnInfo").onclick = () => document.getElementById("infoModal").style.display = "flex
-	
-	
-		
-	
-	
-		Activar 3,50%* cashback
-	
-";
+    document.getElementById("btnInfo").onclick = () => document.getElementById("infoModal").style.display = "flex";
 
     // Ver Respuestas
     document.getElementById("btnToggleAnswers").onclick = () => {
